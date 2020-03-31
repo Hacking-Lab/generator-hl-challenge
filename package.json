@@ -1,5 +1,5 @@
 {
-  "name": "generator-hl2-challenge",
+  "name": "generator-hl-challenge",
   "version": "1.0.0",
   "description": "Hacking-Lab Challenge container generator",
   "files": [
@@ -13,7 +13,7 @@
     "hacking-lab"
   ],
   "author": "Stephan Hauser <stephan.hauser@compass-security.com>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "yeoman-generator": "^4.7.2"
   }
