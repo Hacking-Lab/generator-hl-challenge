@@ -4,10 +4,10 @@ services:
   <%= name %>-hobo:
     build: .
     image: <%= name %>:latest
-    hostname: 'hobo'<% if (goldnugget) { %>
+    hostname: 'hobo'
     ports:
       - "8000:80"
-    volumes:
+<% if (goldnugget) { %>    volumes:
       - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
 <% } %><% if (rdocker) { %>
     networks:
