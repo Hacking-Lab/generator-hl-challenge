@@ -12,11 +12,3 @@ services:
     volumes:
       - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
 <% } %>
-<% if (rdocker) { %>
-    networks:
-      rdocker:
-
-networks:
-  rdocker:
-    external: true
-<% } %>

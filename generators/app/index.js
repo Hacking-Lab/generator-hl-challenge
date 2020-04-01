@@ -26,24 +26,53 @@ module.exports = class extends Generator {
                 name: 'image',
                 message: 'Select base image',
                 choices: [
-                    'alpine-base: Empty alpine image with flag and user handling, for your own custom service',
-                    'alpine-nginx: Nginx server for static web sites',
-                    'alpine-nginx-php: PHP enabled nginx',
-                    'alpine-python-flask: Serving a Python Flask application',
+                    {
+                        name:  'alpine-base: Empty alpine image with flag and user handling, for your own custom service',
+                        short: 'alpine-base',
+                        value: 'alpine-base'
+                    },
+                    {
+                        name:  'alpine-nginx: Nginx server for static web sites',
+                        short: 'alpine-nginx',
+                        value: 'alpine-nginx'
+                    },
+                    {
+                        name:  'alpine-nginx-php: PHP enabled nginx',
+                        short: 'alpine-nginx-php',
+                        value: 'alpine-nginx-php'
+                    },
+                    {
+                        name:  'alpine-python-flask: Serving a Python Flask application',
+                        short: 'alpine-python-flask',
+                        value: 'alpine-python-flask'
+                    },
                 ],
                 filter: x => x.split(':')[0],
             },
-            {
-                type: 'confirm',
-                name: 'rdocker',
-                message: 'Does your challenge require a full public IP (rdocker)? [If in doubt, say NO]',
-                default: false
-            },
+            // Not needed at the moment
+            // {
+            //     type: 'list',
+            //     name: 'rdocker',
+            //     message: 'What type of container are you developing?',
+            //     choices: [
+            //         {
+            //             name: 'A normal web application, hosted through a reverse proxy with HTTPS (idocker)',
+            //             short: 'idocker',
+            //             value: false,
+            //         },
+            //         {
+            //             name: 'Any other type of network service (rdocker)',
+            //             short: 'rdocker',
+            //             value: true,
+            //         }
+            //     ],
+            //     default: false,
+            // },
             {
                 type: 'confirm',
                 name: 'goldnugget',
                 message: 'Add support for dynamic goldnugget?',
-                default: true
+                default: true,
             },
             {
                 type: 'input',
