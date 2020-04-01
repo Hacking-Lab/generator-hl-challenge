@@ -3,28 +3,35 @@ const fs = require('fs');
 
 module.exports = class extends Generator {
     async prompting() {
+        this.log("Before we start, we'll need a bit of information about this new challenge.");
+        this.log("Make sure you have created a resource in the editor and have the UUID ready.");
+
         this.answers = await this.prompt([
             {
                 type: 'input',
                 name: 'name',
-                message: 'Resource name (use-snake-case)',
-                default: this.appname.replace(/[^a-zA-Z0-9-]/g, '-').toLowerCase(),
+                message: 'Resource name (use-snake-case; must match the name given in the resource editor)',
+                default: this.appname.replace(/[^a-z0-9-]/ig, '-').toLowerCase(),
+                validate: x => /^[a-z0-9]+(-[a-z0-9]+)*$/.test(x),
             },
             {
                 type: 'input',
                 name: 'uuid',
-                message: 'Resource UUID',
+                message: 'Resource UUID (fetch it from the resource editor)',
+                validate: x => /^\s*[0-9a-f]{8}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{12}\s*$/i.test(x),
+                filter: x => x.toLowerCase().trim(),
             },
             {
                 type: 'list',
                 name: 'image',
                 message: 'Select base image',
                 choices: [
-                    'alpine-base',
-                    'alpine-nginx',
-                    'alpine-nginx-php',
-                    'alpine-python-flask',
-                ]
+                    'alpine-base: Empty alpine image with flag and user handling, for your own custom service',
+                    'alpine-nginx: Nginx server for static web sites',
+                    'alpine-nginx-php: PHP enabled nginx',
+                    'alpine-python-flask: Serving a Python Flask application',
+                ],
+                filter: x => x.split(':')[0],
             },
             {
                 type: 'confirm',
@@ -91,5 +98,17 @@ module.exports = class extends Generator {
                 this.answers
             );
         }
+    }
+
+    end() {
+        this.log('Thank you for using the Hacking-Lab Challenge generator today!');
+        this.log('Next steps:');
+        this.log('- Read README.md file for more information about your base image');
+        this.log('- Run docker-compose up --build to build and test your container');
+        this.log('- Develop your challenge');
+        if (this.answers.goldnugget) {
+            this.log('- Customize root/flag-deploy-scripts/* to put your goldnugget in the correct place');
+        }
+        this.log('- Once everything is working, run ./prepare.sh and upload dockerfiles.tar.gz to the resource editor');
     }
 };
