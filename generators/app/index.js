@@ -54,11 +54,22 @@ module.exports = class extends Generator {
     }
 
     writing() {
-        this.fs.copyTpl(this.templatePath('docker-compose.yml'), this.destinationPath('docker-compose.yml'), this.answers);
-        this.fs.copyTpl(this.templatePath('Dockerfile'), this.destinationPath('Dockerfile'), this.answers);
-        this.fs.copyTpl(this.templatePath('gitignore'), this.destinationPath('.gitignore'), this.answers);
-        this.fs.copyTpl(this.templatePath(this.answers.image + '.md'), this.destinationPath('README.md'), this.answers);
-        this.fs.copyTpl(this.templatePath('default.env'), this.destinationPath(this.answers.uuid + '.env'), this.answers);
+        const tplFiles = [
+            'docker-compose.yml',
+            'Dockerfile',
+            'gitignore:.gitignore',
+            `${this.answers.image}.md:README.md`,
+            `default.env:${this.answers.uuid}.env`,
+            'prepare.sh',
+        ];
+
+        for (const tpl of tplFiles.map(x => x.split(':'))) {
+            this.fs.copyTpl(
+                this.templatePath(tpl[0]),
+                this.destinationPath(tpl.length > 1 ? tpl[1] : tpl[0]),
+                this.answers
+            );
+        }
 
         if (this.answers.goldnugget && this.answers.uuid) {
             this.fs.write(
