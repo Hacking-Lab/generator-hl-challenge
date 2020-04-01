@@ -7,9 +7,12 @@ services:
     hostname: 'hobo'
     ports:
       - "8000:80"
-<% if (goldnugget) { %>    volumes:
+    env_file: <%= uuid %>.env
+<% if (goldnugget) { %>
+    volumes:
       - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
-<% } %><% if (rdocker) { %>
+<% } %>
+<% if (rdocker) { %>
     networks:
       rdocker:
 

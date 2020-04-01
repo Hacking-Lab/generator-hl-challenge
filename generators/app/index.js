@@ -58,13 +58,14 @@ module.exports = class extends Generator {
         this.fs.copyTpl(this.templatePath('Dockerfile'), this.destinationPath('Dockerfile'), this.answers);
         this.fs.copyTpl(this.templatePath('gitignore'), this.destinationPath('.gitignore'), this.answers);
         this.fs.copyTpl(this.templatePath(this.answers.image + '.md'), this.destinationPath('README.md'), this.answers);
+        this.fs.copyTpl(this.templatePath('default.env'), this.destinationPath(this.answers.uuid + '.env'), this.answers);
 
         if (this.answers.goldnugget && this.answers.uuid) {
             this.fs.write(
                 this.destinationPath(this.answers.uuid + '.gn'),
                 'GOLDNUGGET=___THIS_IS_YOUR_DYNAMIC_GOLDNUGGET___'
             );
-            
+
             this.fs.copyTpl(
                 this.templatePath('flag-deploy-scripts'),
                 this.destinationPath('root/flag-deploy-scripts'),
