@@ -1,4 +1,4 @@
-FROM hackinglab/<%= image %>:latest
+FROM hackinglab/<%= image %>:3.1.0
 
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 <% if (image == 'alpine-python-flask') { %>
