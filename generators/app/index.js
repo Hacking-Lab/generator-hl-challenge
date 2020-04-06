@@ -134,6 +134,7 @@ module.exports = class extends Generator {
         this.log('Next steps:');
         this.log('- Read README.md file for more information about your base image');
         this.log('- Run docker-compose up --build to build and test your container');
+        this.log('- By default web applications are exposed on http://localhost:8000. You can change this in your docker-compose.yml file');
         this.log('- Develop your challenge');
         if (this.answers.goldnugget) {
             this.log('- Customize root/flag-deploy-scripts/* to put your goldnugget in the correct place');
