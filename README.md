@@ -2,7 +2,7 @@
 This generator uses [yo](https://yeoman.io/) to generate new [Hacking-Lab](https://www.compass-security.com/en/products/hacking-lab/) Challenge Docker containers.
 
 ## Installation and Usage
-1. Run `npm install -g generator-hl-challenge` to install the generator
+1. Run `npm install -g generator-hl-challenge yo` to install the generator
 2. Create an empty directory: `git init my-awesome-challenge && cd my-awesome-challenge`
 3. Run the generator and answer all questions: `yo hl-challenge`
 4. Read the `README.md` file in your new challenge for customization and build instructions
