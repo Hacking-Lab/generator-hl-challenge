@@ -1,16 +1,21 @@
 # Hacking-Lab Challenge Generator
-This generator uses [yo](https://yeoman.io/) to generate new [Hacking-Lab](https://www.compass-security.com/en/products/hacking-lab/) Challenge Docker containers.
+This generator uses [Yeoman](https://yeoman.io/) to generate new [Hacking-Lab](https://www.compass-security.com/en/products/hacking-lab/) Challenge Docker containers.
 
-## Installation and Usage
-1. Run `npm install -g generator-hl-challenge yo` to install the generator
-2. Create an empty directory: `git init my-awesome-challenge && cd my-awesome-challenge`
-3. Run the generator and answer all questions: `yo hl-challenge`
-4. Read the `README.md` file in your new challenge for customization and build instructions
+## Installation
+1. Install NodeJS and NPM (Live CD: `sudo apt install nodejs npm`)
+2. Install yo and our generator: `sudo npm install -g generator-hl-challenge yo`
+
+## Usage
+**Note:** The following commands should be run as a user, not as root. If you're using the Live CD switch to the default user by running `su - hacker` before following these steps.
+
+1. Create an empty directory: `git init my-awesome-challenge && cd my-awesome-challenge`
+2. Run the generator and answer all questions: `yo hl-challenge`
+3. Read the `README.md` file in your new challenge for customization and build instructions
 
 Please leave [feedback](https://github.com/hacking-lab/generator-hl2-challenge/issues) if you run into any problems.
 
 ## Development
-To test locally, run `npm link` in this directory (requires sudo).
+If you want to develop on the Yeoman generator itself, run `sudo npm link` in this directory. This will symlink this directory so it's available in Yeoman.
 
 ### Adding support for a new image
 To add support for a new base image, you will have to:
