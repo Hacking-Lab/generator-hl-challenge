@@ -46,6 +46,11 @@ module.exports = class extends Generator {
                         short: 'alpine-python-flask',
                         value: 'alpine-python-flask'
                     },
+                    {
+                        name:  'alpine-ttyd: Serving a ttyd web shell',
+                        short: 'alpine-ttyd',
+                        value: 'alpine-ttyd'
+                    },
                 ],
                 filter: x => x.split(':')[0],
             },
@@ -100,6 +105,10 @@ module.exports = class extends Generator {
         ];
 
         for (const tpl of tplFiles.map(x => x.split(':'))) {
+            if (fs.existsSync(this.templatePath(tpl[0]) + '.' + this.answers.image)){
+                tpl[1] = tpl[0];
+                tpl[0]+= '.' + this.answers.image;
+            }
             this.fs.copyTpl(
                 this.templatePath(tpl[0]),
                 this.destinationPath(tpl.length > 1 ? tpl[1] : tpl[0]),
@@ -110,7 +119,7 @@ module.exports = class extends Generator {
         if (this.answers.goldnugget && this.answers.uuid) {
             this.fs.write(
                 this.destinationPath(this.answers.uuid + '.gn'),
-                'GOLDNUGGET=___THIS_IS_YOUR_DYNAMIC_GOLDNUGGET___'
+                'GOLDNUGGET=SED_GOLDNUGGET'
             );
 
             this.fs.copyTpl(
