@@ -27,29 +27,39 @@ module.exports = class extends Generator {
                 message: 'Select base image',
                 choices: [
                     {
-                        name:  'alpine-base: Empty alpine image with flag and user handling, for your own custom service',
+                        name:  'alpine-base: empty base alpine image with flag and user handling, for your own custom service',
                         short: 'alpine-base',
                         value: 'alpine-base'
                     },
                     {
-                        name:  'alpine-nginx: Nginx server for static web sites',
+                        name:  'alpine-nginx: NGINX web server for static web sites',
                         short: 'alpine-nginx',
                         value: 'alpine-nginx'
                     },
                     {
-                        name:  'alpine-nginx-php: PHP enabled nginx',
+                        name:  'alpine-nginx-php: NGINX-PHP web server for static and dynamic web sites',
                         short: 'alpine-nginx-php',
                         value: 'alpine-nginx-php'
                     },
                     {
-                        name:  'alpine-python-flask: Serving a Python Flask application',
+                        name:  'alpine-python-flask: PYTHON-FLASK application',
                         short: 'alpine-python-flask',
                         value: 'alpine-python-flask'
                     },
                     {
-                        name:  'alpine-ttyd: Serving a ttyd web shell',
+                        name:  'alpine-ttyd: WEB-SHELL web app based on ttyd',
                         short: 'alpine-ttyd',
                         value: 'alpine-ttyd'
+                    },
+                    {
+                        name:  'alpine-siab2: WEB-SHELL web app based on shell in a box',
+                        short: 'alpine-siab2',
+                        value: 'alpine-siab2'
+                    },
+                    {
+                        name:  'alpine-openssh-server: SSH docker server',
+                        short: 'alpine-openssh-server',
+                        value: 'alpine-openssh-server'
                     },
                 ],
                 filter: x => x.split(':')[0],
