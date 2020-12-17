@@ -1,0 +1,10 @@
+extends components/layout
+
+block content
+    div.d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        h1.h2=title
+        div.btn-toolbar.mb-2.mb-md-0
+            button#btn-run-task.btn.btn-sm.btn-outline-primary Run Task
+    pre.pre-scrollable.terminal(data-wsuri!=websocketUri, data-verbose=verbose)
+        code#shell
+    script(src='/javascripts/tool.js')

@@ -61,6 +61,11 @@ module.exports = class extends Generator {
                         short: 'alpine-openssh-server',
                         value: 'alpine-openssh-server'
                     },
+                    {
+                        name:  'alpine-nginx-nodejs-websocketd: SCRIPT LAUNCHER docker server with WEB UI and Web Sockets',
+                        short: 'alpine-nginx-nodejs-websocketd',
+                        value: 'alpine-nginx-nodejs-websocketd'
+                    },
                 ],
                 filter: x => x.split(':')[0],
             },

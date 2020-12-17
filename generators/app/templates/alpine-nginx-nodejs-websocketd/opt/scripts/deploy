@@ -1,0 +1,18 @@
+#!/bin/bash
+
+cd /winattacklab/
+
+echo "=========================="
+echo "running the script /opt/scripts/deploy on the server"
+echo "=========================="
+
+
+for i in {1..5}; do 
+	echo "`date`: deploy $i of 5"
+	sleep 1
+done
+
+
+echo "=========================="
+
+echo "whoami: `whoami`"

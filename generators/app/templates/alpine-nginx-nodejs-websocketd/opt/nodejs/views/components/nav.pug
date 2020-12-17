@@ -1,0 +1,19 @@
+nav#sidebarMenu.col-md-3.col-lg-2.d-md-block.bg-light.sidebar.collapse
+    div.sidebar-sticky.pt-3
+        ul.nav.flex-column
+            li.nav-item
+                a.nav-link(href='/tool/deploy' class=(current === '/tool/deploy' ? 'active' : null))
+                    include ../icons/deploy
+                    | Deploy
+            li.nav-item
+                a.nav-link(href='/tool/destroy' class=(current === '/tool/destroy' ? 'active' : null))
+                    include ../icons/destroy
+                    | Destroy
+            li.nav-item
+                a.nav-link(href='/tool/log' class=(current === '/tool/log' ? 'active' : null))
+                    include ../icons/log
+                    | Log
+            li.nav-item
+                a.nav-link(href='/tool/ipaddresses' class=(current === '/tool/ipaddresses' ? 'active' : null))
+                    include ../icons/ipaddresses
+                    | IP Addresses

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+cd /winattacklab/
+
+ifconfig -a
+
+echo "=========================="
+echo "running the script /opt/scripts/ipaddresses on the server"
+echo "=========================="
+
+
+for i in {1..5}; do 
+	echo "`date`: count $i of 5"
+	sleep 1
+done
+
+
+echo "=========================="
+
+ifconfig -a

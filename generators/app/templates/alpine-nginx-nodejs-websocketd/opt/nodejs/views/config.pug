@@ -1,0 +1,26 @@
+extends components/layout
+
+block content
+    div.d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        h1 Configure Azure
+    div
+        form(method='post')
+            div.form-group.row
+                label.col-sm-2.col-form-label(for='tenantId') Tenant ID
+                div.col-sm-10
+                    input#tenantId.form-control(value=config.tenantId, name='tenantId')
+            div.form-group.row
+                label.col-sm-2.col-form-label(for='subscriptionId') Subscription ID
+                div.col-sm-10
+                    input#subscriptionId.form-control(value=config.subscriptionId, name='subscriptionId')
+            div.form-group.row
+                label.col-sm-2.col-form-label(for='clientId') Client ID
+                div.col-sm-10
+                    input#clientId.form-control(value=config.clientId, name='clientId')
+            div.form-group.row
+                label.col-sm-2.col-form-label(for='clientSecret') Client Secret
+                div.col-sm-10
+                    input#clientSecret.form-control(value=config.clientSecret, name='clientSecret')
+            div.form-group.row
+                div.col-sm-10
+                    button.btn.btn-primary(type='submit') Save

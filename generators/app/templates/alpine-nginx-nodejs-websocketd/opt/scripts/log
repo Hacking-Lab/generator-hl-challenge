@@ -1,0 +1,17 @@
+#!/bin/bash
+
+cd /winattacklab/
+
+echo "=========================="
+echo "running the script /opt/scripts/log on the server"
+echo "=========================="
+
+
+for i in {1..5}; do 
+	echo "`date`: log $i of 5"
+	sleep 1
+done
+
+echo "=========================="
+
+echo "process list: `ps -ef`"

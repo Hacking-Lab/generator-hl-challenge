@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd /winattacklab/
+
+echo "=========================="
+echo "executing /opt/scripts/destroy-task"
+date
