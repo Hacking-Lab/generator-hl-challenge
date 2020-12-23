@@ -42,19 +42,24 @@ module.exports = class extends Generator {
                         value: 'alpine-nginx-php'
                     },
                     {
-                        name:  'alpine-python-flask: PYTHON-FLASK application',
+                        name:  'alpine-python-flask: PYTHON-FLASK web application',
                         short: 'alpine-python-flask',
                         value: 'alpine-python-flask'
                     },
                     {
-                        name:  'alpine-ttyd: WEB-SHELL web app based on ttyd',
+                        name:  'alpine-ttyd: WEB-SHELL based on ttyd (without authentication)',
                         short: 'alpine-ttyd',
                         value: 'alpine-ttyd'
                     },
                     {
-                        name:  'alpine-siab2: WEB-SHELL web app based on shell in a box',
+                        name:  'alpine-siab2: WEB-SHELL based on shell in a box (with authentication)',
                         short: 'alpine-siab2',
                         value: 'alpine-siab2'
+                    },
+                    {
+                        name:  'alpine-tinyproxy: HTTP/HTTPS Proxy based on tinyproxy',
+                        short: 'alpine-tinyproxy',
+                        value: 'alpine-tinyproxy'
                     },
                     {
                         name:  'alpine-openssh-server: SSH docker server',
@@ -62,7 +67,12 @@ module.exports = class extends Generator {
                         value: 'alpine-openssh-server'
                     },
                     {
-                        name:  'alpine-nginx-nodejs-websocketd: SCRIPT LAUNCHER docker server with WEB UI and Web Sockets',
+                        name:  'alpine-nginx-nodejs: NODEJS node app.js (Hello World)',
+                        short: 'alpine-nginx-nodejs',
+                        value: 'alpine-nginx-nodejs'
+                    },
+                    {
+                        name:  'alpine-nginx-nodejs-websocketd: NODEJS npm start (Node and Websocket Service)',
                         short: 'alpine-nginx-nodejs-websocketd',
                         value: 'alpine-nginx-nodejs-websocketd'
                     },

@@ -1,0 +1,14 @@
+version: '3.6'
+
+services:
+  <%= name %>-hobo:
+    build: .
+    image: <%= name %>:latest
+    hostname: 'hobo'
+    ports:
+      - "8888:8888"
+    env_file: <%= uuid %>.env
+<% if (goldnugget) { %>
+    volumes:
+      - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
+<% } %>
