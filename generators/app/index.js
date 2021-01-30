@@ -75,7 +75,7 @@ module.exports = class extends Generator {
                         name:  'alpine-nginx-nodejs-websocketd: NODEJS npm start (Node and Websocket Service)',
                         short: 'alpine-nginx-nodejs-websocketd',
                         value: 'alpine-nginx-nodejs-websocketd'
-                    },
+                    }
                 ],
                 filter: x => x.split(':')[0],
             },
