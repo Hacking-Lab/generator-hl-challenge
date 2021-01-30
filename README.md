@@ -13,6 +13,9 @@ This generator uses [Yeoman](https://yeoman.io/) to generate new [Hacking-Lab](h
 4. `docker-compose up --build`
 5. `testing`
 
+## Video
+* https://youtu.be/eRh3fx_umSI
+
 ## Issues
 Please leave [feedback](https://github.com/Hacking-Lab/generator-hl-challenge/issues) if you run into any problems.
 
