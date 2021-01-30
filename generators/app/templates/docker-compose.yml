@@ -5,6 +5,9 @@ services:
     build: .
     image: <%= name %>:latest
     hostname: 'hobo'
+    environment:
+      - HL_USER_USERNAME=hacker
+      - HL_USER_PASSWORD=compass
     ports:
       - "80:80"
     env_file: <%= uuid %>.env
