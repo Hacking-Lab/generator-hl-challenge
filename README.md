@@ -4,7 +4,10 @@ This generator uses [Yeoman](https://yeoman.io/) to generate new [Hacking-Lab](h
 ## Installation
 1. Install NodeJS and NPM (Live CD: `sudo apt install nodejs npm`)
 2. Install yo and our generator: `sudo npm install -g generator-hl-challenge yo`
-3. Linking packages: `sudo npm link`
+
+## Publishing
+1. npm publish
+2. Linking packages: `sudo npm link`
 
 ## Create a CTF docker (not as user root)
 1. `mkdir my-awesome-challenge`
