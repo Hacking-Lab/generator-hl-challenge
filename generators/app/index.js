@@ -10,7 +10,7 @@ module.exports = class extends Generator {
             {
                 type: 'input',
                 name: 'name',
-                message: 'Resource name (use-snake-case; must match the name given in the resource editor)',
+                message: 'Resource name (use-kebab-case; must match the name given in the resource editor)',
                 default: this.appname.replace(/[^a-z0-9-]/ig, '-').toLowerCase(),
                 validate: x => /^[a-z0-9]+(-[a-z0-9]+)*$/.test(x),
             },
