@@ -37,7 +37,8 @@ To add support for a new base image, you will have to:
 
 
 ## DEV CORNER (deveoper of generator-hl-challenge package)
+* cd /opt/generator-hl-challenge
+* npm version patch (or minor or major)
 * npm login
-* npm build
 * npm publish
 * sudo npm link
