@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+echo "starting unit daemon (unit.nginx)"
+exec /usr/sbin/unitd --no-daemon --log /dev/stderr
+

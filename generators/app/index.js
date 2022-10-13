@@ -75,7 +75,12 @@ module.exports = class extends Generator {
                         name:  'alpine-nginx-nodejs-websocketd: NODEJS npm start (Node and Websocket Service)',
                         short: 'alpine-nginx-nodejs-websocketd',
                         value: 'alpine-nginx-nodejs-websocketd'
-                    }
+                    },
+                    {
+                        name:  'alpine-binary-c: Execuable C binary.c (Hello World)',
+                        short: 'alpine-binary-c',
+                        value: 'alpine-binary-c'
+                    },
                 ],
                 filter: x => x.split(':')[0],
             },
