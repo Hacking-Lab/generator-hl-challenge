@@ -82,9 +82,9 @@ module.exports = class extends Generator {
                         value: 'alpine-binary-c'
                     },
                     {
-                        name:  'alipne-nginx-theia-ide: Alpine Linux, s6 startup, NGINX and static web site, Theia web IDE',
-                        short: 'alipne-nginx-theia-ide',
-                        value: 'alipne-nginx-theia-ide'
+                        name:  'alpine-nginx-theia-ide: Alpine Linux, s6 startup, NGINX and static web site, Theia web IDE',
+                        short: 'alpine-nginx-theia-ide',
+                        value: 'alpine-nginx-theia-ide'
                     }
                 ],
                 filter: x => x.split(':')[0],
