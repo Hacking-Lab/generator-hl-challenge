@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# exec /usr/sbin/php-fpm7 -F
+source /etc/hluser
+s6-setuidgid $HL_USER_USERNAME /usr/sbin/php-fpm7 -F

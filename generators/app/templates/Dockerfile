@@ -30,6 +30,22 @@ RUN gcc /src/binary.c -o /server -lseccomp
 RUN tar cf /web/server.tar /server /lib/ld-musl-x86_64.so.1 /usr/lib/libseccomp.so.2.5.1
 <% }
 
+
+else if (image == 'alpine-nginx-theia-ide') { %>
+
+FROM hackinglab/alpine-nginx-with-theia-web-ide:3.2
+
+LABEL maintainer=<<%= authorEmail %>>
+
+MAINTAINER <%= authorName %> <<%= authorEmail %>>
+
+COPY root /
+
+RUN chown -R 2000:2000 /home/theia
+
+<% }
+
+
 else {%>
 
 FROM hackinglab/<%= image %>:3.2.0

@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv bash
+source /etc/hluser
+cd /home/theia
+s6-setuidgid $HL_USER_USERNAME /usr/local/bin/node /home/theia/src-gen/backend/main.js /home/project --hostname=127.0.0.1
+#exec /usr/local/bin/node /home/theia/src-gen/backend/main.js /home/project --hostname=127.0.0.1
+
