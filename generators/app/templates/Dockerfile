@@ -39,6 +39,8 @@ LABEL maintainer=<<%= authorEmail %>>
 
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
+USER root
+
 COPY root /
 
 RUN chown -R 2000:2000 /home/theia
