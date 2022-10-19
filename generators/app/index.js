@@ -27,24 +27,29 @@ module.exports = class extends Generator {
                 message: 'Select base image',
                 choices: [
                     {
-                        name:  'alpine-base: empty base alpine image with flag and user handling, for your own custom service',
-                        short: 'alpine-base',
-                        value: 'alpine-base'
+                        name:  'alpine-base-aarch64: empty base aarch64 alpine image with flag and user handling, for your own custom service',
+                        short: 'alpine-base-aarch64',
+                        value: 'alpine-base-aarch64'
                     },
                     {
-                        name:  'alpine-nginx: NGINX web server for static web sites',
-                        short: 'alpine-nginx',
-                        value: 'alpine-nginx'
+                        name:  'alpine-base-amd64: empty base amd64 alpine image with flag and user handling, for your own custom service',
+                        short: 'alpine-base-amd64',
+                        value: 'alpine-base-amd64'
                     },
                     {
-                        name:  'alpine-nginx-php: NGINX-PHP web server for static and dynamic web sites',
-                        short: 'alpine-nginx-php',
-                        value: 'alpine-nginx-php'
+                        name:  'alpine-nginx-amd64: NGINX web server for static web sites',
+                        short: 'alpine-nginx-amd64',
+                        value: 'alpine-nginx-amd64'
                     },
                     {
-                        name:  'alpine-python-flask: PYTHON-FLASK web application',
-                        short: 'alpine-python-flask',
-                        value: 'alpine-python-flask'
+                        name:  'alpine-nginx-php-amd64: NGINX-PHP web server for static and dynamic web sites',
+                        short: 'alpine-nginx-php-amd64',
+                        value: 'alpine-nginx-php-amd64'
+                    },
+                    {
+                        name:  'alpine-python-flask-amd64: PYTHON-FLASK web application',
+                        short: 'alpine-python-flask-amd64',
+                        value: 'alpine-python-flask-amd64'
                     },
                     {
                         name:  'alpine-ttyd: WEB-SHELL based on ttyd (without authentication)',

@@ -1,6 +1,6 @@
-<% if (image == 'alpine-python-flask') { %>
+<% if (image == 'alpine-python-flask-amd64') { %>
 
-FROM hackinglab/<%= image %>:3.2.0
+FROM hackinglab/<%= image %>:latest
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
@@ -14,7 +14,7 @@ COPY root /
 
 else if (image == 'alpine-binary-c') { %>
 
-FROM hackinglab/alpine-base:3.2.0
+FROM hackinglab/alpine-base:latest
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
@@ -33,7 +33,7 @@ RUN tar cf /web/server.tar /server /lib/ld-musl-x86_64.so.1 /usr/lib/libseccomp.
 
 else if (image == 'alpine-nginx-theia-ide') { %>
 
-FROM hackinglab/alpine-nginx-with-theia-web-ide:3.2
+FROM hackinglab/alpine-nginx-with-theia-web-ide:latest
 
 LABEL maintainer=<<%= authorEmail %>>
 
@@ -50,7 +50,7 @@ RUN chown -R 2000:2000 /home/theia
 
 else {%>
 
-FROM hackinglab/<%= image %>:3.2.0
+FROM hackinglab/<%= image %>:latest
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
