@@ -90,7 +90,18 @@ module.exports = class extends Generator {
                         name:  'alpine-nginx-theia-ide: Alpine Linux, s6 startup, NGINX and static web site, Theia web IDE',
                         short: 'alpine-nginx-theia-ide',
                         value: 'alpine-nginx-theia-ide'
+                    },
+                    {
+                        name:  'alpine-nginx-php-aarch64: NGINX-PHP web server for static and dynamic web sites',
+                        short: 'alpine-nginx-php-aarch64',
+                        value: 'alpine-nginx-php-aarch64'
+                    },
+                    {
+                        name:  'alpine-nginx-aarch64: NGINX web server for static web sites',
+                        short: 'alpine-nginx-aarch64',
+                        value: 'alpine-nginx-aarch64'
                     }
+
                 ],
                 filter: x => x.split(':')[0],
             },
