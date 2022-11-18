@@ -1,4 +1,4 @@
-<% if (image == 'alpine-python-flask-amd64') { %>
+<% if (image == 'alpine-python-flask') { %>
 
 FROM hackinglab/<%= image %>:latest
 
@@ -27,7 +27,10 @@ RUN apk add --no-cache gcc libc-dev unit curl libseccomp libseccomp-dev socat un
 
 RUN gcc /src/binary.c -o /server -lseccomp
 # Creating a tar file with the Executable for analysis
-RUN tar cf /web/server.tar /server /lib/ld-musl-x86_64.so.1 /usr/lib/libseccomp.so.2.5.1
+RUN cp /lib/ld-musl-x86_64.so.1 /
+RUN cp /usr/lib/libseccomp.so.2.5.1 /
+RUN tar cf /web/server.tar /server /ld-musl-x86_64.so.1 /libseccomp.so.2.5.1
+
 <% }
 
 

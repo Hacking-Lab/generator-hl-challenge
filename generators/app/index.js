@@ -27,29 +27,24 @@ module.exports = class extends Generator {
                 message: 'Select base image',
                 choices: [
                     {
-                        name:  'alpine-base-aarch64: empty base aarch64 alpine image with flag and user handling, for your own custom service',
-                        short: 'alpine-base-aarch64',
-                        value: 'alpine-base-aarch64'
+                        name:  'alpine-base: empty base alpine image with flag and user handling, for your own custom service',
+                        short: 'alpine-base',
+                        value: 'alpine-base'
                     },
                     {
-                        name:  'alpine-base-amd64: empty base amd64 alpine image with flag and user handling, for your own custom service',
-                        short: 'alpine-base-amd64',
-                        value: 'alpine-base-amd64'
+                        name:  'alpine-nginx: NGINX web server for static web sites',
+                        short: 'alpine-nginx',
+                        value: 'alpine-nginx'
                     },
                     {
-                        name:  'alpine-nginx-amd64: NGINX web server for static web sites',
-                        short: 'alpine-nginx-amd64',
-                        value: 'alpine-nginx-amd64'
+                        name:  'alpine-nginx-php: NGINX-PHP web server for static and dynamic web sites',
+                        short: 'alpine-nginx-php',
+                        value: 'alpine-nginx-php'
                     },
                     {
-                        name:  'alpine-nginx-php-amd64: NGINX-PHP web server for static and dynamic web sites',
-                        short: 'alpine-nginx-php-amd64',
-                        value: 'alpine-nginx-php-amd64'
-                    },
-                    {
-                        name:  'alpine-python-flask-amd64: PYTHON-FLASK web application',
-                        short: 'alpine-python-flask-amd64',
-                        value: 'alpine-python-flask-amd64'
+                        name:  'alpine-python-flask: PYTHON-FLASK web application',
+                        short: 'alpine-python-flask',
+                        value: 'alpine-python-flask'
                     },
                     {
                         name:  'alpine-ttyd: WEB-SHELL based on ttyd (without authentication)',
@@ -90,16 +85,6 @@ module.exports = class extends Generator {
                         name:  'alpine-nginx-theia-ide: Alpine Linux, s6 startup, NGINX and static web site, Theia web IDE',
                         short: 'alpine-nginx-theia-ide',
                         value: 'alpine-nginx-theia-ide'
-                    },
-                    {
-                        name:  'alpine-nginx-php-aarch64: NGINX-PHP web server for static and dynamic web sites',
-                        short: 'alpine-nginx-php-aarch64',
-                        value: 'alpine-nginx-php-aarch64'
-                    },
-                    {
-                        name:  'alpine-nginx-aarch64: NGINX web server for static web sites',
-                        short: 'alpine-nginx-aarch64',
-                        value: 'alpine-nginx-aarch64'
                     }
 
                 ],
