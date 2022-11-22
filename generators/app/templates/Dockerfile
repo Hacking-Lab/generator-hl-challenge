@@ -58,7 +58,7 @@ FROM hackinglab/<%= image %>:latest
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
-COPY root /
+
 
 <% }
 
