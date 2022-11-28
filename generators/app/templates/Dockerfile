@@ -10,6 +10,7 @@ COPY root/app/requirements.txt /app/requirements.txt
 RUN pip3 install -r /app/requirements.txt
 
 COPY root /
+
 <% } 
 
 else if (image == 'alpine-binary-c') { %>
@@ -54,7 +55,7 @@ FROM hackinglab/<%= image %>:latest
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
-
+COPY root /
 
 <% }
 
