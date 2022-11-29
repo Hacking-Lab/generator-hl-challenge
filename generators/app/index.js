@@ -157,11 +157,21 @@ module.exports = class extends Generator {
                 this.destinationPath(this.answers.uuid + '.gn'),
                 'GOLDNUGGET=SED_GOLDNUGGET'
             );
-
+            this.fs.write(
+                this.destinationPath(this.answers.uuid + '.env'),
+                'GOLDNUGGET=SED_GOLDNUGGET'
+            );
             this.fs.copyTpl(
                 this.templatePath('flag-deploy-scripts'),
                 this.destinationPath('root/flag-deploy-scripts'),
                 this.answers
+            );
+        }
+        //if no gold nugget add a empty root folder
+        if (!this.answers.goldnugget) {
+            this.fs.write(
+                this.destinationPath('root'),
+                'This folder is empty'
             );
         }
 
