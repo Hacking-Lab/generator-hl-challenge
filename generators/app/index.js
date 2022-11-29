@@ -167,11 +167,11 @@ module.exports = class extends Generator {
                 this.answers
             );
         }
-        //if no gold nugget add a empty root folder
+
         if (!this.answers.goldnugget) {
             this.fs.write(
-                this.destinationPath('root'),
-                'This folder is empty'
+                this.destinationPath('root/README.md'),
+                'No goldnugget'
             );
         }
 
