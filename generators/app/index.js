@@ -170,8 +170,8 @@ module.exports = class extends Generator {
 
         if (!this.answers.goldnugget) {
             this.fs.write(
-                this.destinationPath('root/README.md'),
-                'No goldnugget'
+                this.destinationPath('root/no_gn_flag.md'),
+                'This challenge does not support goldnugget as you have chosen not to use it.'
             );
         }
 
