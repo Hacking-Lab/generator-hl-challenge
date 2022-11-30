@@ -50,6 +50,17 @@ RUN tar cf /web/support.tar  /ld-musl-x86_64.so.1 /libseccomp.so.2.5.1
 <% }
 
 
+else if (image == 'alpine-unitd') { %>
+
+FROM hackinglab/alpine-base:latest
+LABEL maintainer=<>
+MAINTAINER  <>
+COPY root /
+RUN apk update 
+
+
+<% }
+
 else if (image == 'alpine-nginx-theia-ide') { %>
 
 FROM hackinglab/alpine-nginx-with-theia-web-ide:latest

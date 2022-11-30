@@ -1,0 +1,23 @@
+{
+	"access_log": "/dev/stdout",
+	"settings": {
+		"http": {
+			"header_read_timeout": 10,
+			"body_read_timeout": 10,
+			"send_timeout": 10,
+			"idle_timeout": 120
+		}
+	},
+	"listeners": {
+		"*:80": {
+			"pass": "routes"
+		}
+	},
+	"routes": [
+		{
+			"action": {
+				"share": "/opt/www/"
+			}
+		}
+	]
+}
