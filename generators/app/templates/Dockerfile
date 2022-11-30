@@ -15,6 +15,25 @@ COPY root /
 
 else if (image == 'alpine-binary-c') { %>
 
+FROM hackinglab/alpine-base:3.2.0
+
+LABEL maintainer=<<%= authorEmail %>>
+MAINTAINER <%= authorName %> <<%= authorEmail %>>
+
+COPY root /
+RUN apk update 
+RUN apk add --no-cache gcc libc-dev unit curl libseccomp libseccomp-dev socat unit
+# Compiling binary from source ( replace the binary with the one from the challenge - /src/binary.c)
+
+
+RUN gcc /src/binary.c -o /server -lseccomp
+# Creating a tar file with the Executable for analysis
+RUN tar cf /web/server.tar /server /lib/ld-musl-x86_64.so.1 /usr/lib/libseccomp.so.2.5.1
+<% }
+
+
+else if (image == 'alpine-binary-c-dynamic') { %>
+
 FROM hackinglab/alpine-base:latest
 LABEL maintainer=<>
 MAINTAINER  <>

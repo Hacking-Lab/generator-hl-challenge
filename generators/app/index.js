@@ -77,10 +77,23 @@ module.exports = class extends Generator {
                         value: 'alpine-nginx-nodejs-websocketd'
                     },
                     {
-                        name:  'alpine-binary-c: Execuable C binary.c (Hello World)',
+                        name:  'alpine-binary-c-dynamic: Execuable C with compiled flag',
+                        short: 'alpine-binary-c-dynamic',
+                        value: 'alpine-binary-c-dynamic'
+                    },
+
+                    {
+                        name:  'alpine-binary-c: Execuable C binary',
                         short: 'alpine-binary-c',
                         value: 'alpine-binary-c'
                     },
+
+                    {
+                        name:  'alpine-unitd: Unitd web server : Small unitd web service (static page)',
+                        short: 'alpine-unitd',
+                        value: 'alpine-unitd'
+                    },
+
                     {
                         name:  'alpine-nginx-theia-ide: Alpine Linux, s6 startup, NGINX and static web site, Theia web IDE',
                         short: 'alpine-nginx-theia-ide',

@@ -1,4 +1,3 @@
 #!/usr/bin/with-contenv sh
 
-exec socat TCP-LISTEN:1234,fork,reuseaddr EXEC:/web/binary
-
+exec socat TCP-LISTEN:1234,fork,reuseaddr EXEC:/server
