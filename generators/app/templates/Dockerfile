@@ -56,7 +56,13 @@ FROM hackinglab/alpine-base:latest
 LABEL maintainer=<>
 MAINTAINER  <>
 COPY root /
-RUN apk update 
+
+RUN apk add --no-cache --update \
+    unit && \
+    rm -rf /var/cache/apk/* && \
+    chown -R root:root /opt/www
+
+ENTRYPOINT ["unitd", "--no-daemon", "--log", "/dev/stderr"]
 
 
 <% }
