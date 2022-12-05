@@ -1,4 +1,4 @@
-<% if (image == 'alpine-python-flask') { %>
+<% if (image == 'alpine-python-flask-hl') { %>
 
 FROM hackinglab/<%= image %>:latest
 
@@ -13,9 +13,9 @@ COPY root /
 
 <% } 
 
-else if (image == 'alpine-binary-c') { %>
+else if (image == 'alpine-binary-c-hl') { %>
 
-FROM hackinglab/alpine-base:3.2.0
+FROM hackinglab/alpine-base-hl:latest
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
@@ -32,12 +32,12 @@ RUN tar cf /web/server.tar /server /lib/ld-musl-x86_64.so.1 /usr/lib/libseccomp.
 <% }
 
 
-else if (image == 'alpine-binary-c-dynamic') { %>
+else if (image == 'alpine-binary-c-dynamic-hl') { %>
 
-FROM hackinglab/alpine-base:latest
+FROM hackinglab/alpine-base-hl:latest
 LABEL maintainer=<>
 MAINTAINER  <>
-COPY root /
+ADD root /
 RUN apk update 
 RUN apk add --no-cache gcc libc-dev unit curl libseccomp libseccomp-dev socat unit
 # Compiling binary from source ( replace the binary with the one from the challenge - /src/binary.c)
@@ -50,12 +50,12 @@ RUN tar cf /web/support.tar  /ld-musl-x86_64.so.1 /libseccomp.so.2.5.1
 <% }
 
 
-else if (image == 'alpine-unitd') { %>
+else if (image == 'alpine-unitd-hl') { %>
 
-FROM hackinglab/alpine-base:latest
+FROM hackinglab/alpine-base-hl:latest
 LABEL maintainer=<>
 MAINTAINER  <>
-COPY root /
+ADD root /
 
 RUN apk add --no-cache --update \
     unit && \
@@ -77,7 +77,7 @@ MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
 USER root
 
-COPY root /
+ADD root /
 
 RUN chown -R 2000:2000 /home/theia
 
@@ -91,7 +91,7 @@ FROM hackinglab/<%= image %>:latest
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
-COPY root /
+ADD root /
 
 <% }
 

@@ -27,71 +27,71 @@ module.exports = class extends Generator {
                 message: 'Select base image',
                 choices: [
                     {
-                        name:  'alpine-base: empty base alpine image with flag and user handling, for your own custom service',
-                        short: 'alpine-base',
-                        value: 'alpine-base'
+                        name:  'alpine-base-hl: empty base alpine image with flag and user handling, for your own custom service',
+                        short: 'alpine-base-hl',
+                        value: 'alpine-base-hl'
                     },
                     {
-                        name:  'alpine-nginx: NGINX web server for static web sites',
-                        short: 'alpine-nginx',
-                        value: 'alpine-nginx'
+                        name:  'alpine-nginx-hl: NGINX web server for static web sites',
+                        short: 'alpine-nginx-hl',
+                        value: 'alpine-nginx-hl'
                     },
                     {
-                        name:  'alpine-nginx-php: NGINX-PHP web server for static and dynamic web sites',
-                        short: 'alpine-nginx-php',
-                        value: 'alpine-nginx-php'
+                        name:  'alpine-nginx-php-hl: NGINX-PHP web server for static and dynamic web sites',
+                        short: 'alpine-nginx-php-hl',
+                        value: 'alpine-nginx-php-hl'
                     },
                     {
-                        name:  'alpine-python-flask: PYTHON-FLASK web application',
-                        short: 'alpine-python-flask',
-                        value: 'alpine-python-flask'
+                        name:  'alpine-python-flask-hl: PYTHON-FLASK web application',
+                        short: 'alpine-python-flask-hl',
+                        value: 'alpine-python-flask-hl'
                     },
                     {
-                        name:  'alpine-ttyd: WEB-SHELL based on ttyd (without authentication)',
-                        short: 'alpine-ttyd',
-                        value: 'alpine-ttyd'
+                        name:  'alpine-ttyd-hl: WEB-SHELL based on ttyd (without authentication)',
+                        short: 'alpine-ttyd-hl',
+                        value: 'alpine-ttyd-hl'
                     },
                     {
-                        name:  'alpine-siab2: WEB-SHELL based on shell in a box (with authentication)',
-                        short: 'alpine-siab2',
-                        value: 'alpine-siab2'
+                        name:  'alpine-siab2-hl: WEB-SHELL based on shell in a box (with authentication)',
+                        short: 'alpine-siab2-hl',
+                        value: 'alpine-siab2-hl'
                     },
                     {
-                        name:  'alpine-tinyproxy: HTTP/HTTPS Proxy based on tinyproxy',
-                        short: 'alpine-tinyproxy',
-                        value: 'alpine-tinyproxy'
+                        name:  'alpine-tinyproxy-hl: HTTP/HTTPS Proxy based on tinyproxy',
+                        short: 'alpine-tinyproxy-hl',
+                        value: 'alpine-tinyproxy-hl'
                     },
                     {
-                        name:  'alpine-openssh-server: SSH docker server',
-                        short: 'alpine-openssh-server',
-                        value: 'alpine-openssh-server'
+                        name:  'alpine-openssh-server-hl: SSH docker server',
+                        short: 'alpine-openssh-server-hl',
+                        value: 'alpine-openssh-server-hl'
                     },
                     {
-                        name:  'alpine-nginx-nodejs: NODEJS node app.js (Hello World)',
-                        short: 'alpine-nginx-nodejs',
-                        value: 'alpine-nginx-nodejs'
+                        name:  'alpine-nginx-nodejs-hl: NODEJS node app.js (Hello World)',
+                        short: 'alpine-nginx-nodejs-hl',
+                        value: 'alpine-nginx-nodejs-hl'
                     },
                     {
-                        name:  'alpine-nginx-nodejs-websocketd: NODEJS npm start (Node and Websocket Service)',
-                        short: 'alpine-nginx-nodejs-websocketd',
-                        value: 'alpine-nginx-nodejs-websocketd'
+                        name:  'alpine-nginx-nodejs-websocketd-hl: NODEJS npm start (Node and Websocket Service)',
+                        short: 'alpine-nginx-nodejs-websocketd-hl',
+                        value: 'alpine-nginx-nodejs-websocketd-hl'
                     },
                     {
-                        name:  'alpine-binary-c-dynamic: Execuable C with compiled flag',
-                        short: 'alpine-binary-c-dynamic',
-                        value: 'alpine-binary-c-dynamic'
-                    },
-
-                    {
-                        name:  'alpine-binary-c: Execuable C binary',
-                        short: 'alpine-binary-c',
-                        value: 'alpine-binary-c'
+                        name:  'alpine-binary-c-dynamic-hl: Execuable C with compiled flag',
+                        short: 'alpine-binary-c-dynamic-hl',
+                        value: 'alpine-binary-c-dynamic-hl'
                     },
 
                     {
-                        name:  'alpine-unitd: Unitd web server : Small unitd web service (static page)',
-                        short: 'alpine-unitd',
-                        value: 'alpine-unitd'
+                        name:  'alpine-binary-c-hl: Execuable C binary',
+                        short: 'alpine-binary-c-hl',
+                        value: 'alpine-binary-c-hl'
+                    },
+
+                    {
+                        name:  'alpine-unitd-hl: Unitd web server : Small unitd web service (static page)',
+                        short: 'alpine-unitd-hl',
+                        value: 'alpine-unitd-hl'
                     },
 
                     {
