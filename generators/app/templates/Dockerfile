@@ -6,10 +6,10 @@ LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
 # Install app requirements (keep separate from other files to allow quicker build times)
-COPY root/app/requirements.txt /app/requirements.txt
+ADD root/app/requirements.txt /app/requirements.txt
 RUN pip3 install -r /app/requirements.txt
 
-COPY root /
+ADD root /
 
 <% } 
 
@@ -20,7 +20,7 @@ FROM hackinglab/alpine-base-hl:latest
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
-COPY root /
+ADD root /
 RUN apk update 
 RUN apk add --no-cache gcc libc-dev unit curl libseccomp libseccomp-dev socat unit
 # Compiling binary from source ( replace the binary with the one from the challenge - /src/binary.c)
