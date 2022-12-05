@@ -85,7 +85,7 @@ RUN chown -R 2000:2000 /home/theia
 
 else if (image == 'alpine-apache2-hl') { %>
 
-FROM hackinglab/alpine-base-hl:3.2
+FROM hackinglab/alpine-apache2-hl:3.2
 
 LABEL maintainer=<<%= authorEmail %>>
 
