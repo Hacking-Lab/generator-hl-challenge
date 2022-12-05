@@ -98,6 +98,11 @@ module.exports = class extends Generator {
                         name:  'alpine-nginx-theia-ide: Alpine Linux, s6 startup, NGINX and static web site, Theia web IDE',
                         short: 'alpine-nginx-theia-ide',
                         value: 'alpine-nginx-theia-ide'
+                    },
+                    {
+                        name:  'alpine-apache2-hl: Alpine apache2 web server',
+                        short: 'alpine-apache2-hl',
+                        value: 'alpine-apache2-hl'
                     }
 
                 ],

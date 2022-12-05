@@ -83,6 +83,28 @@ RUN chown -R 2000:2000 /home/theia
 
 <% }
 
+else if (image == 'alpine-apache2-hl') { %>
+
+FROM hackinglab/alpine-base-hl:3.2
+
+LABEL maintainer=<<%= authorEmail %>>
+
+MAINTAINER <%= authorName %> <<%= authorEmail %>>
+
+ADD root /
+
+RUN apk add --no-cache --update apache2 \
+    apache2-utils \
+    openssl && \
+    mkdir -p /run/apache2 && \
+	rm -rf /var/cache/apk/* && \
+	chown -R root:root /opt/www
+
+# Expose the ports for apache2 
+EXPOSE 80
+
+<% }
+
 
 else {%>
 

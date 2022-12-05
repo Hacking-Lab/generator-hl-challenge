@@ -1,0 +1,8 @@
+#!/command/with-contenv sh
+
+echo "testing apache2 config"
+/usr/sbin/httpd -f /etc/apache2/httpd.conf -t; 
+
+echo "starting apache2"
+exec /usr/sbin/httpd -f /etc/apache2/httpd.conf -k start -DFOREGROUND;
+
