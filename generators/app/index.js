@@ -52,9 +52,9 @@ module.exports = class extends Generator {
                         value: 'alpine-ttyd-hl'
                     },
                     {
-                        name:  'alpine-siab2-hl: WEB-SHELL based on shell in a box (with authentication)',
-                        short: 'alpine-siab2-hl',
-                        value: 'alpine-siab2-hl'
+                        name:  'alpine-siab-hl: WEB-SHELL based on shell in a box (with authentication)',
+                        short: 'alpine-siab-hl',
+                        value: 'alpine-siab-hl'
                     },
                     {
                         name:  'alpine-tinyproxy-hl: HTTP/HTTPS Proxy based on tinyproxy',
