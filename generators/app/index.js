@@ -1,5 +1,7 @@
 const Generator = require('yeoman-generator');
+const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
+
 
 module.exports = class extends Generator {
     async prompting() {
@@ -14,10 +16,13 @@ module.exports = class extends Generator {
                 default: this.appname.replace(/[^a-z0-9-]/ig, '-').toLowerCase(),
                 validate: x => /^[a-z0-9]+(-[a-z0-9]+)*$/.test(x),
             },
+            //Ask the user for the resource UUID from resource editor if not provided generate a random UUID
+            
             {
                 type: 'input',
                 name: 'uuid',
-                message: 'Resource UUID (fetch it from the resource editor)',
+                message: 'Resource UUID (fetch it from the resource editor or leave blank to generate a random one)',
+                default: uuidv4(),
                 validate: x => /^\s*[0-9a-f]{8}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{12}\s*$/i.test(x),
                 filter: x => x.toLowerCase().trim(),
             },

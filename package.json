@@ -15,6 +15,7 @@
   "author": "Stephan Hauser <stephan.hauser@compass-security.com>",
   "license": "MIT",
   "dependencies": {
+    "uuid": "^9.0.0",
     "yeoman-generator": "^5.4.2"
   }
 }
