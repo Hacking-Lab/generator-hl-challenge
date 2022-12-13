@@ -21,7 +21,8 @@ LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
 ADD root /
-RUN apk update 
+RUN apk update
+RUN chmod +x /etc/services.d/*/run 
 RUN apk add --no-cache gcc libc-dev unit curl libseccomp libseccomp-dev socat unit
 # Compiling binary from source ( replace the binary with the one from the challenge - /src/binary.c)
 
@@ -39,6 +40,7 @@ LABEL maintainer=<>
 MAINTAINER  <>
 ADD root /
 RUN apk update 
+RUN chmod +x /etc/services.d/*/run
 RUN apk add --no-cache gcc libc-dev unit curl libseccomp libseccomp-dev socat unit
 # Compiling binary from source ( replace the binary with the one from the challenge - /src/binary.c)
 
