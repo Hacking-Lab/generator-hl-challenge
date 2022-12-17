@@ -26,5 +26,5 @@ if you run this docker locally, the string is static
 * flag = SED_GOLDNUGGET
 
 ## Base Image
-* hackinglab/alpine-base
+* hackinglab/alpine-base-hl
 
