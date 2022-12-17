@@ -1,6 +1,9 @@
 # Alpine Linux NGINX Web Server
 ## Introduction
-This content is provided by a Alpine Linux nginx web server (docker) from the Hacking-Lab CTF system. 
+This content is provided by a Alpine Linux nginx php (docker) from the Hacking-Lab CTF system. 
+
+## s6 Overlay Framework:
+* version 3
 
 ## Service Specifications
 * with s6 startup handling in `/etc/cont-init.d/` and `/etc/services.d/<service>/run`
@@ -9,12 +12,13 @@ This content is provided by a Alpine Linux nginx web server (docker) from the Ha
 * with `environment` based dynamic ctf flag handling in `/etc/cont-init-d/99-add-flag.sh`
 * with `file` based dynamic ctf flag handling in `/etc/cont-init-d/99-add-flag.sh`
 * with nginx service, started by `/etc/services.d/nginx/run`
+* with php service, started by `/etc/services.d/php-fpm/run`
 
 ## DocumentRoot
 * /opt/www
 
 ## PHP Support
-* disabled
+* Enabled
 
 ## NGINX configuration
 * /config/nginx/nginx.conf
@@ -26,5 +30,5 @@ if you run this docker locally, the string is static
 * flag = SED_GOLDNUGGET
 
 ## Base Image
-* hackinglab/alpine-base-hl
+* hackinglab/alpine-nginx-php-hl
 
