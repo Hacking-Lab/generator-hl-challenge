@@ -1,4 +1,4 @@
-# Alpine Linux NGINX Web Server
+# Alpine Linux NGINX PHP Web Server
 ## Introduction
 This content is provided by a Alpine Linux nginx php (docker) from the Hacking-Lab CTF system. 
 
@@ -19,6 +19,9 @@ This content is provided by a Alpine Linux nginx php (docker) from the Hacking-L
 
 ## PHP Support
 * Enabled
+
+## PHP Version
+* [Version](index.php)
 
 ## NGINX configuration
 * /config/nginx/nginx.conf
