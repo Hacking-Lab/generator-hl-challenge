@@ -1,6 +1,6 @@
 {
-    "apiUrl": "http://websocketd/static",
+    "apiUrl": "http://localhost/static",
     "wsUrl": "ws://localhost/api",
     "verbose": "true",
-    "appName": "Sample NodeJS Express"
+    "appName": "NodeJS Sample Application"
 }

@@ -1,13 +1,13 @@
 import express from 'express';
 import fs from 'fs';
 
-const azureFilePath = '../data/azure.json';
+const configFilePath = '../data/config.json';
 const configRouter = express.Router();
 
 function getConfigFromFile() {
   let config = {};
   return new Promise(resolve => {
-    fs.readFile(azureFilePath, (error, data) => {
+    fs.readFile(configFilePath, (error, data) => {
       if (!error) {
         resolve(JSON.parse(data));
       }
@@ -27,7 +27,7 @@ configRouter.get('/', async (req, res) => {
 });
 
 configRouter.post('/', (req, res) => {
-  fs.writeFile(azureFilePath, JSON.stringify(req.body), async (error) => {
+  fs.writeFile(configFilePath, JSON.stringify(req.body), async (error) => {
     if (error) {
       res.status(500);
       res.render('error', { ...error });

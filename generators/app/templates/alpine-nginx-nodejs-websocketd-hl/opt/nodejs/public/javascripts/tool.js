@@ -36,6 +36,17 @@ function scrollTerminalToBottom() {
   $('.terminal').scrollTop($('.terminal').prop('scrollHeight'));
 }
 
+function runTask() {
+  clear();
+  const argument = $('#task-argument').val().trim();
+  if (argument.length > 0) {
+    setupWebSocket(`task?argument=${argument}`);
+    $('#task-argument').val('');
+  } else {
+    setupWebSocket('task');
+  }
+}
+
 $(window).on('resize', () => {
   fixTerminalHeight();
 });
@@ -45,7 +56,12 @@ $(document).ready(() => {
   setupWebSocket();
 });
 
+$('#task-argument').on('keyup', e => {
+  if (e.keyCode === 13) { // Enter
+    runTask();
+  }
+});
+
 $('#btn-run-task').click(() => {
-  clear();
-  setupWebSocket('task');
+    runTask();
 });

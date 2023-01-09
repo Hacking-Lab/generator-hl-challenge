@@ -1,0 +1,13 @@
+#!/command/with-contenv sh
+
+
+echo "================================="
+echo $HL_USER_USERNAME
+echo "================================="
+
+source /etc/hluser
+chown -R node:node /opt/nodejs
+cd /opt/nodejs
+exec sudo -u node npm start;
+
+

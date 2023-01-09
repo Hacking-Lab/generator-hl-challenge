@@ -1,0 +1,5 @@
+#!/command/with-contenv sh
+
+echo "starting log websocketd"
+exec /usr/bin/websocketd -port=8082 -address=127.0.0.1 /opt/scripts/log
+

@@ -1,9 +1,9 @@
 FROM node:10.19.0
 
-ADD package*.json ./
+COPY package*.json ./
 
 RUN npm i
 
-ADD . ./
+COPY . ./
 
 ENTRYPOINT [ "npm", "start" ]

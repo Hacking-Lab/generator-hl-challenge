@@ -5,28 +5,26 @@ import configJson from '../config.json';
 
 const sitesRouter = express.Router();
 
-sitesRouter.get('/about', async (req, res) => {
+async function renderSite(res, title, site) {
   let markdown = 'No information found.';
   try {
-    const response = await fetch(`${configJson.apiUrl}/about`);
-    const parsed = await response.json();
-    markdown = new Remarkable().render(parsed.markdown);
+    const response = await fetch(`${configJson.apiUrl}/${site}.md`);
+    if (response.status === 200) {
+      const content = await response.text();
+      markdown = new Remarkable().render(content);
+    }
   } catch (error) {
     markdown = error;
   }
-  res.render('site', { title: 'About', markdown });
+  res.render('site', { title, markdown });
+}
+
+sitesRouter.get('/about', async (req, res) => {
+  await renderSite(res, 'About', 'about');
 });
 
 sitesRouter.get('/readme', async (req, res) => {
-  let markdown = 'No information found.';
-  try {
-    const response = await fetch(`${configJson.apiUrl}/readme`);
-    const parsed = await response.json();
-    markdown = new Remarkable().render(parsed.markdown);
-  } catch (error) {
-    markdown = error;
-  }
-  res.render('site', { title: 'Readme', markdown });
+  await renderSite(res, 'About', 'readme');
 });
 
 export default sitesRouter;

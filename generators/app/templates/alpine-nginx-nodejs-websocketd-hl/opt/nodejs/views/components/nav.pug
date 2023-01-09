@@ -17,3 +17,12 @@ nav#sidebarMenu.col-md-3.col-lg-2.d-md-block.bg-light.sidebar.collapse
                 a.nav-link(href='/tool/ipaddresses' class=(current === '/tool/ipaddresses' ? 'active' : null))
                     include ../icons/ipaddresses
                     | IP Addresses
+            li.nav-item
+                a.nav-link(href='/config' class=(current === '/config' ? 'active' : null))
+                    | Configure
+            li.nav-item
+                a.nav-link(href='/site/readme' class=(current === '/site/readme' ? 'active' : null))
+                    | Readme
+            li.nav-item
+                a.nav-link(href='/site/about' class=(current === '/site/about' ? 'active' : null))
+                    | About
