@@ -7,6 +7,6 @@ fi
 
 [ -e dockerfiles.tar.gz ] && rm dockerfiles.tar.gz
 
-tar cvzf dockerfiles.tar.gz Dockerfile $UUID.* root/
+tar cvzf dockerfiles.tar.gz Dockerfile $UUID.* root/ challenge-description/
 
 md5sum dockerfiles.tar.gz
