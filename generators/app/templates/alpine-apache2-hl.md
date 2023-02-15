@@ -13,9 +13,14 @@ This is the template alpine apache2 web server image of the Hacking-Lab CTF syst
 * with `file` based dynamic ctf flag handling
 * serving files by apache2 in /opt/www
 
+
 ## Build & Test
 1 `docker-compse -f docker-compose.yml up`
 2. browse to http://localhost:80/
+
+## Adding Challenge Description
+- Navigate to challenge-description folder
+- Edit all the `.md` files except `_howto` and `Readme` 
 
 ## Testing only (without building)
 1. `docker pull hackinglab/alpine-apache2-hl:latest`

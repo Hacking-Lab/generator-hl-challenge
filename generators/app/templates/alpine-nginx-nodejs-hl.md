@@ -13,6 +13,10 @@ This docker provides a web interface to bash scripts (with authentication).
 ## GitHub
 See [hacking-lab/<%= image %>](https://github.com/Hacking-Lab/<%= image %>/) for full information information.
 
+## Adding Challenge Description
+- Navigate to challenge-description folder
+- Edit all the `.md` files except `_howto` and `Readme` 
+
 ## Building & testing
 - Build and run: `docker-compose up --build`, then navigate to [http://localhost:7681](http://localhost:7681)
 - Deploy: `./prepare.sh`, then upload `dockerfiles.tar.gz`
