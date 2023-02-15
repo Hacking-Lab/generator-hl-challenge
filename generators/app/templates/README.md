@@ -5,6 +5,10 @@
 - Check the docker-compose.yml 
 - Connect to the service; e.g. [http://localhost:8000](http://localhost:8000)
 
+## Adding Challenge Description
+- Navigate to challenge-description folder
+- Edit all the `.md` files except `_howto` and `Readme` 
+
 ## Publish Docker to Hacking-Lab
 - EXECUTE: `./prepare.sh` and this will create the `dockerfiles.tar.gz` for you
 - UPLOAD: `dockerfiles.tar.gz` to the Hacking-Lab Resource Editor

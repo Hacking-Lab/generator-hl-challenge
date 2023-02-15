@@ -161,6 +161,7 @@ module.exports = class extends Generator {
             `${this.answers.image}.md:README.md`,
             `default.env:${this.answers.uuid}.env`,
             'prepare.sh',
+            'challenge-description',
         ];
 
         for (const tpl of tplFiles.map(x => x.split(':'))) {
