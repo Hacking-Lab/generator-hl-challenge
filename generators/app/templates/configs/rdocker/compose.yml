@@ -9,10 +9,6 @@ services:
     cpus: 1
     mem_limit: 128M
 
-    env_file:
-      - ./uuid.env
-    volumes:
-      - ./uuid---hobo.gn:/goldnugget/uuid.gn
 
     networks:
       - rdocker

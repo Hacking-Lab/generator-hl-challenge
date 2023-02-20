@@ -250,32 +250,43 @@ module.exports = class extends Generator {
             // replace resname with the provided name in compose.yml
             if (file === composeFile) {
                 fileContents = fileContents.replace(/resname/g, name);
-
-                // remove volumes line that references goldnugget file if flag type is env
-                if (!this.answers.goldnugget) {
-                    // Remove env_file and volumes fields if no goldnugget is selected
-                    fileContents = fileContents.replace(/\s*env_file:\n\s+-.*\.env/gm, '');
-                    fileContents = fileContents.replace(/\s*volumes:\n\s+-.*---hobo\.gn:\/goldnugget\/uuid\.gn\n/gm, '');
-                  } else if (this.answers.flagType === 'env') {
-                    // Replace volumes field with env_file field if env flag type is selected
-                    fileContents = fileContents.replace(/volumes:\n\s+-.*uuid---hobo\.gn:\/goldnugget\/uuid\.gn\n/gm, '');
-                    fileContents = fileContents.replace(/env_file:\n\s+-.*uuid\.env/gm, `env_file:\n      - ./${uuid}.env`);
-                  } else if (this.answers.flagType === 'file') {
-                    // Replace env_file field with volumes field if file flag type is selected
-                    fileContents = fileContents.replace(/env_file:\n\s+-.*\.env/gm, `env_file:\n      - ./${uuid}.env`);
-                    fileContents = fileContents.replace(/volumes:\n\s+-.*uuid---hobo\.gn:\/goldnugget\/uuid\.gn\n/gm, '');
-                  }
+            
+                if (this.answers.flagType === 'file') {
+                    fileContents += `
+                        volumes:
+                            - ./${uuid}---hobo.gn:/goldnugget/uuid.gn
+                    `;
+                } else if (this.answers.flagType === 'env') {
+                    fileContents += `
+                        env_file:
+                            - ./${uuid}.env
+                    `;
                 }
+            
+                if (this.answers.dockerType === 'rdocker') {
+                    fileContents += `
+                        networks:
+                          - rdocker
+            
+                    networks:
+                      rdocker:
+                        external: true
+                    `;
+                }
+            }
+            
+            
+            
 
             // replace uuid with the provided uuid in dockermanager.json
             if (file === dockermanagerFile) {
                 try {
                     const dockermanager = JSON.parse(fileContents);
                     dockermanager.name = name;
+                    dockermanager.type = this.answers.uuid;
                     dockermanager.container = `REGISTRY_BASE_URL/${name}:stable`;
                     dockermanager.network = name;
-                    dockermanager.containeryml = `${dockermanager.type}.yml`;
-                    dockermanager.goldNugget = `./${uuid}---hobo.gn`;
+                    dockermanager.containeryml = this.answers.uuid + '.yml';
                     fileContents = JSON.stringify(dockermanager, null, 2);
                 } catch (err) {
                     console.error(`Error parsing JSON from ${file}:`, err);
