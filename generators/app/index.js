@@ -181,7 +181,6 @@ module.exports = class extends Generator {
             'Dockerfile',
             'gitignore:.gitignore',
             `${this.answers.image}.md:README.md`,
-            `default.env:${this.answers.uuid}.env`,
             'prepare.sh',
             'challenge-description',
         ];
@@ -199,28 +198,30 @@ module.exports = class extends Generator {
         }
 
         if (this.answers.goldnugget && this.answers.uuid) {
-            if (this.answers.env) {
-                this.fs.write(
-                    this.destinationPath(this.answers.uuid + '.env'),
-                    'GOLDNUGGET=SED_GOLDNUGGET'
-                );
-            } else {
-                this.fs.write(
-                    this.destinationPath(this.answers.uuid + '.gn'),
-                    'GOLDNUGGET=SED_GOLDNUGGET'
-                );
+            if (this.answers.flagType === 'env') {
+              this.fs.write(
+                this.destinationPath(this.answers.uuid + '.env'),
+                'GOLDNUGGET=SED_GOLDNUGGET'
+              );
+            } else if (this.answers.flagType === 'file') {
+              this.fs.write(
+                this.destinationPath(this.answers.uuid + '.gn'),
+                'GOLDNUGGET=SED_GOLDNUGGET'
+              );
             }
+            
             this.fs.copyTpl(
-                this.templatePath('flag-deploy-scripts'),
-                this.destinationPath('root/flag-deploy-scripts'),
-                this.answers
+              this.templatePath('flag-deploy-scripts'),
+              this.destinationPath('root/flag-deploy-scripts'),
+              this.answers
             );
-        } else if (!this.answers.goldnugget) {
+          } else if (!this.answers.goldnugget) {
             this.fs.write(
-                this.destinationPath('root/no_gn_flag.md'),
-                'This challenge does not support goldnugget as you have chosen not to use it.'
+              this.destinationPath('root/no_gn_flag.md'),
+              'This challenge does not support goldnugget as you have chosen not to use it.'
             );
-        }
+          }
+          
 
         if (fs.existsSync(this.templatePath(this.answers.image))) {
             this.fs.copyTpl(
@@ -232,10 +233,11 @@ module.exports = class extends Generator {
           
           const configFolder = this.answers.dockerType === 'idocker' ? 'idocker' : 'rdocker';
           const name = this.answers.name;
+          const flagType = this.answers.flagType;
           
           let dockermanagerFile = 'dockermanager_no_gn.json';
           if (this.answers.goldnugget) {
-            dockermanagerFile = `dockermanager_${this.answers.flagType}_gn.json`;
+            dockermanagerFile = `dockermanager_${flagType}_gn.json`;
           }
           
           const composeFile = 'compose.yml';
@@ -249,30 +251,33 @@ module.exports = class extends Generator {
             if (file === composeFile) {
               fileContents = fileContents.replace(/resname/g, name);
           
-              // replace env_file with uuid.env in compose.yml
-              if (this.answers.flagType === 'env') {
+              if (flagType === 'env') {
+                // remove volumes from the file
+                fileContents = fileContents.replace(/volumes:\n\s+-.*\.gn:/gm, '');
+                // replace uuid in env_file
                 fileContents = fileContents.replace(/env_file:\n\s+-.*\.env/gm, `env_file:\n      - ./${this.answers.uuid}.env`);
-                fileContents = fileContents.replace(/\.\/[a-f0-9\-]{36}---.*\.gn/gm, '');
-              }
-          
-              // replace volumes with uuid---hobo.gn in compose.yml
-              if (this.answers.flagType === 'file') {
-                fileContents = fileContents.replace(/volumes:\n\s+-.*\.gn/gm, `volumes:\n      - ./${this.answers.uuid}---hobo.gn:/goldnugget/${this.answers.uuid}.gn`);
-                fileContents = fileContents.replace(/volumes:\n\s+-.*\.env/gm, '');
+              } else if (flagType === 'file') {
+                // remove env_file from the file
+                fileContents = fileContents.replace(/env_file:\n\s+-.*\.env/gm, '');
+                // replace uuid in volumes
+                fileContents = fileContents.replace(/volumes:\n\s+-.*\.gn:/gm, `volumes:\n      - ./${this.answers.uuid}---${name}.gn:/goldnugget/${this.answers.uuid}.gn`);
               }
             }
           
+            // replace testidocker with the provided name in dockermanager.json
             if (file === dockermanagerFile) {
               const dockermanager = JSON.parse(fileContents);
               dockermanager.name = name;
+              dockermanager.type = this.answers.uuid;
               dockermanager.container = `REGISTRY_BASE_URL/${name}:stable`;
               dockermanager.network = name;
-              dockermanager.containeryml = `${dockermanager.type}.yml`;
+              dockermanager.containeryml = `${this.answers.uuid}.yml`;
               fileContents = JSON.stringify(dockermanager, null, 2);
             }
           
             this.fs.write(this.destinationPath(`configs/${configFolder}/${file}`), fileContents);
           });
+          
           
     }
 
