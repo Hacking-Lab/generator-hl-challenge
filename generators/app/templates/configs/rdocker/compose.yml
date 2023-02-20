@@ -8,11 +8,3 @@ services:
       - "domainname=idocker.REALM_DOMAIN_SUFFIX"
     cpus: 1
     mem_limit: 128M
-
-
-    networks:
-      - rdocker
-
-networks:
-  rdocker:
-    external: true

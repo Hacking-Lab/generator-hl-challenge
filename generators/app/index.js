@@ -250,33 +250,32 @@ module.exports = class extends Generator {
             // replace resname with the provided name in compose.yml
             if (file === composeFile) {
                 fileContents = fileContents.replace(/resname/g, name);
-            
+
                 if (this.answers.flagType === 'file') {
                     fileContents += `
-                        volumes:
-                            - ./${uuid}---hobo.gn:/goldnugget/uuid.gn
-                    `;
+                volumes:
+                  - ./${uuid}---hobo.gn:/goldnugget/uuid.gn
+                  `;
                 } else if (this.answers.flagType === 'env') {
                     fileContents += `
-                        env_file:
-                            - ./${uuid}.env
-                    `;
+                env_file:
+                  - ./${uuid}.env
+                  `;
                 }
-            
+
                 if (this.answers.dockerType === 'rdocker') {
                     fileContents += `
-                        networks:
-                          - rdocker
-            
-                    networks:
-                      rdocker:
-                        external: true
-                    `;
+                networks:
+                  - rdocker
+              
+              networks:
+                rdocker:
+                  external: true
+                  `;
                 }
             }
-            
-            
-            
+
+
 
             // replace uuid with the provided uuid in dockermanager.json
             if (file === dockermanagerFile) {
