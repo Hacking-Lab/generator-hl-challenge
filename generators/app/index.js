@@ -253,24 +253,24 @@ module.exports = class extends Generator {
 
                 if (this.answers.flagType === 'file') {
                     fileContents += `
-                volumes:
-                  - ./${uuid}---hobo.gn:/goldnugget/uuid.gn
+    volumes:
+      - ./${uuid}---hobo.gn:/goldnugget/uuid.gn
                   `;
                 } else if (this.answers.flagType === 'env') {
                     fileContents += `
-                env_file:
-                  - ./${uuid}.env
+    env_file:
+      - ./${uuid}.env
                   `;
                 }
 
                 if (this.answers.dockerType === 'rdocker') {
                     fileContents += `
-                networks:
-                  - rdocker
+    networks:
+      - rdocker
               
-              networks:
-                rdocker:
-                  external: true
+networks:
+  rdocker:
+    external: true
                   `;
                 }
             }
