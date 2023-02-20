@@ -1,0 +1,22 @@
+version: '2.3'
+
+services:
+  resname-hobo:
+    image: REGISTRY_BASE_URL/resname:stable
+    hostname: 'hobo'
+    environment:
+      - "domainname=idocker.REALM_DOMAIN_SUFFIX"
+    cpus: 1
+    mem_limit: 128M
+
+    env_file:
+      - ./uuid.env
+    volumes:
+      - ./uuid---hobo.gn:/goldnugget/uuid.gn
+
+    networks:
+      - rdocker
+
+networks:
+  rdocker:
+    external: true

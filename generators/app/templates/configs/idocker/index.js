@@ -231,7 +231,6 @@ module.exports = class extends Generator {
           }
           
           const configFolder = this.answers.dockerType === 'idocker' ? 'idocker' : 'rdocker';
-          const name = this.answers.name;
           
           let dockermanagerFile = 'dockermanager_no_gn.json';
           if (this.answers.goldnugget) {
@@ -243,35 +242,10 @@ module.exports = class extends Generator {
           const filesToCopy = [dockermanagerFile, composeFile];
           
           filesToCopy.forEach((file) => {
-            let fileContents = this.fs.read(this.templatePath(`configs/${configFolder}/${file}`));
-          
-            // replace resname with the provided name in compose.yml
-            if (file === composeFile) {
-              fileContents = fileContents.replace(/resname/g, name);
-          
-              // replace env_file with uuid.env in compose.yml
-              if (this.answers.flagType === 'env') {
-                fileContents = fileContents.replace(/env_file:\n\s+-.*\.env/gm, `env_file:\n      - ./${this.answers.uuid}.env`);
-                fileContents = fileContents.replace(/\.\/[a-f0-9\-]{36}---.*\.gn/gm, '');
-              }
-          
-              // replace volumes with uuid---hobo.gn in compose.yml
-              if (this.answers.flagType === 'file') {
-                fileContents = fileContents.replace(/volumes:\n\s+-.*\.gn/gm, `volumes:\n      - ./${this.answers.uuid}---hobo.gn:/goldnugget/${this.answers.uuid}.gn`);
-                fileContents = fileContents.replace(/volumes:\n\s+-.*\.env/gm, '');
-              }
-            }
-          
-            if (file === dockermanagerFile) {
-              const dockermanager = JSON.parse(fileContents);
-              dockermanager.name = name;
-              dockermanager.container = `REGISTRY_BASE_URL/${name}:stable`;
-              dockermanager.network = name;
-              dockermanager.containeryml = `${dockermanager.type}.yml`;
-              fileContents = JSON.stringify(dockermanager, null, 2);
-            }
-          
-            this.fs.write(this.destinationPath(`configs/${configFolder}/${file}`), fileContents);
+            this.fs.copy(
+              this.templatePath(`configs/${configFolder}/${file}`),
+              this.destinationPath(`configs/${configFolder}/${file}`)
+            );
           });
           
     }
