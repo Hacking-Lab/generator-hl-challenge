@@ -252,14 +252,20 @@ module.exports = class extends Generator {
                 fileContents = fileContents.replace(/resname/g, name);
 
                 // remove volumes line that references goldnugget file if flag type is env
-                if (this.answers.flagType === 'env') {
-                    fileContents = fileContents.replace(/volumes:\n\s+- .\/{uuid}---hobo\.gn:\/goldnugget\/uuid\.gn\n/g, '');
-                    fileContents = fileContents.replace(/env_file:\n\s+- .\/uuid\.env/g, `env_file:\n      - ./${uuid}.env`);
-                } else if (this.answers.flagType === 'file') {
-                    fileContents = fileContents.replace(/env_file:\n\s+- .\/uuid\.env/g, `env_file:\n      - ./${uuid}.env`);
-                    fileContents = fileContents.replace(/volumes:\n\s+- .\/{uuid}---hobo\.gn:\/goldnugget\/uuid\.gn\n/g, '');
+                if (!this.answers.goldnugget) {
+                    // Remove env_file and volumes fields if no goldnugget is selected
+                    fileContents = fileContents.replace(/\s*env_file:\n\s+-.*\.env/gm, '');
+                    fileContents = fileContents.replace(/\s*volumes:\n\s+-.*---hobo\.gn:\/goldnugget\/uuid\.gn\n/gm, '');
+                  } else if (this.answers.flagType === 'env') {
+                    // Replace volumes field with env_file field if env flag type is selected
+                    fileContents = fileContents.replace(/volumes:\n\s+-.*uuid---hobo\.gn:\/goldnugget\/uuid\.gn\n/gm, '');
+                    fileContents = fileContents.replace(/env_file:\n\s+-.*uuid\.env/gm, `env_file:\n      - ./${uuid}.env`);
+                  } else if (this.answers.flagType === 'file') {
+                    // Replace env_file field with volumes field if file flag type is selected
+                    fileContents = fileContents.replace(/env_file:\n\s+-.*\.env/gm, `env_file:\n      - ./${uuid}.env`);
+                    fileContents = fileContents.replace(/volumes:\n\s+-.*uuid---hobo\.gn:\/goldnugget\/uuid\.gn\n/gm, '');
+                  }
                 }
-            }
 
             // replace uuid with the provided uuid in dockermanager.json
             if (file === dockermanagerFile) {
