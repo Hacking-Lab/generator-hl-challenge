@@ -15,5 +15,5 @@ Please describe what the overall goal of the challenge is
 Please describe what the tasks required are (only overview)
 
 # Flag Format
-* `HL{STRING}
+* `HL{STRING}`
 
