@@ -10,9 +10,11 @@ services:
 
 <% if (flagType === 'env' && goldnugget) { %>
     env_file: <%= uuid %>.env
+      - ./root/tinyproxy:/etc/tinyproxy
 <% } else if (flagType === 'file' && goldnugget) { %>
     volumes:
       - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
+      - ./root/tinyproxy:/etc/tinyproxy
 <% } else if (!flagType && goldnugget) { %>
     volumes:
       - ./root/tinyproxy:/etc/tinyproxy
