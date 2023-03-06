@@ -8,15 +8,16 @@ services:
     ports:
       - "8888:8888"
 
-<% if (flagType === 'env' && goldnugget) { %>
+<% if (typeof flagType !== 'undefined' && flagType === 'env' && goldnugget) { %>
     env_file: <%= uuid %>.env
       - ./root/tinyproxy:/etc/tinyproxy
-<% } else if (flagType === 'file' && goldnugget) { %>
+<% } else if (typeof flagType !== 'undefined' && flagType === 'file' && goldnugget) { %>
     volumes:
       - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
       - ./root/tinyproxy:/etc/tinyproxy
-<% } else{ %>
+<% } else { %>
     volumes:
       - ./root/tinyproxy:/etc/tinyproxy
 <% } %>
+
 

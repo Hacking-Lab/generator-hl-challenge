@@ -11,9 +11,9 @@ services:
     ports:
       - "80:80"
       - "1234:1234"
-<% if (flagType === 'env' && goldnugget) { %>
-    env_file: <%= uuid %>.env
-<% } else if (flagType === 'file' && goldnugget) { %>
-    volumes:
-      - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
+<% if (goldnugget && typeof flagType !== 'undefined' && flagType === 'env') { %>
+  env_file: <%= uuid %>.env
+<% } else if (goldnugget && typeof flagType !== 'undefined' && flagType === 'file') { %>
+  volumes:
+    - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
 <% } %>

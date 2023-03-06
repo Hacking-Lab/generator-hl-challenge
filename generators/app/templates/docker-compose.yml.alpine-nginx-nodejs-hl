@@ -10,9 +10,9 @@ services:
       - HL_USER_PASSWORD=compass
     ports:
       - "3000:3000"
-<% if (flagType === 'env' && goldnugget) { %>
-    env_file: <%= uuid %>.env
-<% } else if (flagType === 'file' && goldnugget) { %>
-    volumes:
-      - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
+<% if (goldnugget && typeof flagType !== 'undefined' && flagType === 'env') { %>
+  env_file: <%= uuid %>.env
+<% } else if (goldnugget && typeof flagType !== 'undefined' && flagType === 'file') { %>
+  volumes:
+    - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
 <% } %>
