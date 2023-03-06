@@ -10,8 +10,9 @@ services:
       - HL_USER_PASSWORD=compass
     ports:
       - "80:80"
+<% if (flagType === 'env' && goldnugget) { %>
     env_file: <%= uuid %>.env
-<% if (goldnugget) { %>
+<% } else if (flagType === 'file' && goldnugget) { %>
     volumes:
       - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
 <% } %>
