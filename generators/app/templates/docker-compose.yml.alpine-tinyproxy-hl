@@ -7,13 +7,13 @@ services:
     hostname: 'hobo'
     ports:
       - "8888:8888"
-      
+
 <% if (flagType === 'env' && goldnugget) { %>
     env_file: <%= uuid %>.env
 <% } else if (flagType === 'file' && goldnugget) { %>
     volumes:
       - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
-<% } else if (!goldnugget) { %>
+<% } else if (!flagType && goldnugget) { %>
     volumes:
       - ./root/tinyproxy:/etc/tinyproxy
 <% } %>
