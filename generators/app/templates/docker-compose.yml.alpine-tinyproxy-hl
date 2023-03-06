@@ -15,7 +15,7 @@ services:
     volumes:
       - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
       - ./root/tinyproxy:/etc/tinyproxy
-<% } else if (!flagType && goldnugget) { %>
+<% } else{ %>
     volumes:
       - ./root/tinyproxy:/etc/tinyproxy
 <% } %>
