@@ -11,8 +11,13 @@ services:
     ports:
       - "80:80"
       - "1234:1234"
-    env_file: <%= uuid %>.env
-<% if (goldnugget) { %>
+    <% if (flagTypeFile) { %>
     volumes:
       - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
-<% } %>
+    <% } %>
+    <% if (flagTypeEnv) { %>
+    env_file: <%= uuid %>.env
+    <% } %>
+    <% if (!goldnugget) { %>
+    # Remove the volumes and env_file properties if goldnugget is not selected
+    <% } %>

@@ -119,7 +119,7 @@ module.exports = class extends Generator {
                 message: 'What type of container are you developing?',
                 choices: [
                     {
-                        name: 'A normal web application, hosted through a reverse proxy with HTTPS (idocker)',
+                        name: 'A normal web application, hosted through a reverse proxy (idocker)',
                         short: 'idocker',
                         value: 'idocker',
                     },
@@ -135,7 +135,7 @@ module.exports = class extends Generator {
             {
                 type: 'confirm',
                 name: 'goldnugget',
-                message: 'Add support for dynamic goldnugget?',
+                message: 'Add support for dynamic Flag?',
                 default: true,
             },
 
@@ -198,12 +198,12 @@ module.exports = class extends Generator {
         }
 
         if (this.answers.goldnugget && this.answers.uuid) {
-            if (this.answers.flagType === 'env') {
+            if (flagTypeEnv) {
                 this.fs.write(
                     this.destinationPath(this.answers.uuid + '.env'),
                     'GOLDNUGGET=SED_GOLDNUGGET'
                 );
-            } else if (this.answers.flagType === 'file') {
+            } else if (flagTypeFile) {
                 this.fs.write(
                     this.destinationPath(this.answers.uuid + '.gn'),
                     'GOLDNUGGET=SED_GOLDNUGGET'
@@ -218,7 +218,7 @@ module.exports = class extends Generator {
         } else if (!this.answers.goldnugget) {
             this.fs.write(
                 this.destinationPath('root/no_gn_flag.md'),
-                'This challenge does not support goldnugget as you have chosen not to use it.'
+                'This challenge does not support dynamic flag as you have chosen not to use it.'
             );
         }
 
@@ -234,6 +234,9 @@ module.exports = class extends Generator {
         const configFolder = this.answers.dockerType === 'idocker' ? 'idocker' : 'rdocker';
         const name = this.answers.name;
         const uuid = this.answers.uuid;
+        const flagTypeFile = this.answers.flagType === 'file';
+        const flagTypeEnv = this.answers.flagType === 'env';
+        
 
         let dockermanagerFile = 'dockermanager_no_gn.json';
         if (this.answers.goldnugget) {
@@ -251,12 +254,12 @@ module.exports = class extends Generator {
             if (file === composeFile) {
                 fileContents = fileContents.replace(/resname/g, name);
 
-                if (this.answers.flagType === 'file') {
+                if (flagTypeFile) {
                     fileContents += `
     volumes:
       - ./${uuid}---hobo.gn:/goldnugget/uuid.gn
                   `;
-                } else if (this.answers.flagType === 'env') {
+                } else if (flagTypeEnv) {
                     fileContents += `
     env_file:
       - ./${uuid}.env

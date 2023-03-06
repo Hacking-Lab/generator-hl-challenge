@@ -7,11 +7,17 @@ services:
     hostname: 'hobo'
     ports:
       - "8888:8888"
-    env_file: <%= uuid %>.env
-<% if (goldnugget) { %>
+    <% if (flagTypeFile) { %>
     volumes:
       - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
+    <% } %>
+    <% if (flagTypeEnv) { %>
+    env_file: <%= uuid %>.env
+    <% } %>
+    <% if (!goldnugget) { %>
+    # Remove the volumes and env_file properties if goldnugget is not selected
+     volumes:
       - ./root/tinyproxy:/etc/tinyproxy
-<% } %>
+    <% } %>
 
 

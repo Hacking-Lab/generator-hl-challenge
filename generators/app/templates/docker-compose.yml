@@ -10,8 +10,15 @@ services:
       - HL_USER_PASSWORD=compass
     ports:
       - "80:80"
-    env_file: <%= uuid %>.env
-<% if (goldnugget) { %>
+   services:
+   <% if (flagTypeFile) { %>
     volumes:
       - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
-<% } %>
+    <% } %>
+    <% if (flagTypeEnv) { %>
+    env_file: <%= uuid %>.env
+    <% } %>
+    <% if (!goldnugget) { %>
+    # Remove the volumes and env_file properties if goldnugget is not selected
+    <% } %>
+
