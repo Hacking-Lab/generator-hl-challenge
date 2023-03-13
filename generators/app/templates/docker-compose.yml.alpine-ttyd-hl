@@ -8,9 +8,8 @@ services:
     ports:
       - "7681:7681"
 <% if (goldnugget && typeof flagType !== 'undefined' && flagType === 'env') { %>
-  env_file: <%= uuid %>.env
+    env_file: <%= uuid %>.env
 <% } else if (goldnugget && typeof flagType !== 'undefined' && flagType === 'file') { %>
-  volumes:
+    volumes:
     - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
 <% } %>
-

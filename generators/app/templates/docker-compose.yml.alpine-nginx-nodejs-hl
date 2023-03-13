@@ -11,8 +11,8 @@ services:
     ports:
       - "3000:3000"
 <% if (goldnugget && typeof flagType !== 'undefined' && flagType === 'env') { %>
-  env_file: <%= uuid %>.env
+    env_file: <%= uuid %>.env
 <% } else if (goldnugget && typeof flagType !== 'undefined' && flagType === 'file') { %>
-  volumes:
+    volumes:
     - ./<%= uuid %>.gn:/goldnugget/<%= uuid %>.gn
 <% } %>
