@@ -8,3 +8,9 @@ services:
       - "domainname=idocker.REALM_DOMAIN_SUFFIX"
     cpus: 1
     mem_limit: 128M
+
+    env_file:
+      - ./uuid_hl_unique.env
+
+    volumes:
+      - ./uuid_hl_unique---hobo.gn:/goldnugget/uuid_hl_unique.gn

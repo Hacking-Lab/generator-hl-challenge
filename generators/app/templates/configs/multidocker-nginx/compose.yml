@@ -1,0 +1,98 @@
+version: '2.3'
+
+services:
+  nginx-multi-docker-hobo:
+    image: REGISTRY_BASE_URL/nginx-multi-docker:stable
+    hostname: 'hobo'
+    environment:
+      - "domainname=idocker.REALM_DOMAIN_SUFFIX"
+      - "SERVICES=hobo"
+    cpus: 1
+    mem_limit: 128M
+    labels:
+      - "traefik.port=80"
+      - "traefik.frontend.rule=Host:hobo.idocker.REALM_DOMAIN_SUFFIX"
+      - "traefik.protocol=http"
+      - "traefik.frontend.errors.network.status=500-599"
+      - "traefik.frontend.errors.network.backend=errorpage"
+      - "traefik.frontend.errors.network.query=/{status}.html"
+
+
+  resname-hobo-1:
+    image: REGISTRY_BASE_URL/resname:stable
+    hostname: 'hobo-1'
+    networks:
+      - hobo
+      - tmp_default
+    environment:
+      - "domainname=idocker.REALM_DOMAIN_SUFFIX"
+    cpus: 1
+    mem_limit: 128M
+    labels:
+      - "traefik.port=ENTER_YOUR_PORT_NUMBER_HERE"
+      - "traefik.frontend.rule=Host:hobo-1.idocker.REALM_DOMAIN_SUFFIX"
+      - "traefik.protocol=http"
+      - "traefik.frontend.errors.network.status=500-599"
+      - "traefik.frontend.errors.network.backend=errorpage"
+      - "traefik.frontend.errors.network.query=/{status}.html"
+
+    env_file:
+      - ./uuid.env
+
+    volumes:
+      - ./${uuid}---hobo.gn:/goldnugget/uuid.gn
+
+  resname-hobo-2:
+    image: REGISTRY_BASE_URL/resname:stable
+    hostname: 'hobo-2'
+    networks:
+      - hobo
+      - tmp_default
+    environment:
+      - "domainname=idocker.REALM_DOMAIN_SUFFIX"
+    cpus: 1
+    mem_limit: 128M
+    labels:
+      - "traefik.port=ENTER_YOUR_PORT_NUMBER_HERE"
+      - "traefik.frontend.rule=Host:hobo-2.idocker.REALM_DOMAIN_SUFFIX"
+      - "traefik.protocol=http"
+      - "traefik.frontend.errors.network.status=500-599"
+      - "traefik.frontend.errors.network.backend=errorpage"
+      - "traefik.frontend.errors.network.query=/{status}.html"
+
+    env_file:
+      - ./uuid.env
+
+    volumes:
+      - ./${uuid}---hobo.gn:/goldnugget/uuid.gn
+
+  resname-hobo-3:
+    image: REGISTRY_BASE_URL/resname:stable
+    hostname: 'hobo-3'
+    networks:
+      - hobo
+      - tmp_default
+    environment:
+      - "domainname=idocker.REALM_DOMAIN_SUFFIX"
+    cpus: 1
+    mem_limit: 128M
+    labels:
+      - "traefik.port=ENTER_YOUR_PORT_NUMBER_HERE"
+      - "traefik.frontend.rule=Host:hobo-3.idocker.REALM_DOMAIN_SUFFIX"
+      - "traefik.protocol=http"
+      - "traefik.frontend.errors.network.status=500-599"
+      - "traefik.frontend.errors.network.backend=errorpage"
+      - "traefik.frontend.errors.network.query=/{status}.html"
+
+    env_file:
+      - ./uuid.env
+
+    volumes:
+      - ./${uuid}---hobo.gn:/goldnugget/uuid.gn
+
+networks:
+  hobo:
+  tmp_default:
+    external: true
+
+  

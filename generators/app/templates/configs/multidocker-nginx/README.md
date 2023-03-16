@@ -1,0 +1,2 @@
+## Hacking-Lab Challenge - Multi Docker Nginx
+This is a challenge designed to help users learn how to use Docker for hosting multiple services with Nginx as a reverse proxy. The challenge uses Nginx Multi Docker as a base image, and allows the user to select any image provided by the generator for their challenge. Copy the provided configs in Hacking-Lab resource editor.

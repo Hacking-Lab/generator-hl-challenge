@@ -15,3 +15,11 @@ services:
       - "traefik.frontend.errors.network.status=500-599"
       - "traefik.frontend.errors.network.backend=errorpage"
       - "traefik.frontend.errors.network.query=/{status}.html"
+
+
+    env_file:
+      - ./uuid_hl_unique.env
+
+    volumes:
+      - ./uuid_hl_unique---hobo.gn:/goldnugget/uuid_hl_unique.gn
+

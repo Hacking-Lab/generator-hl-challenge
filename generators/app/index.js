@@ -1,14 +1,22 @@
+// Import necessary dependencies
 const Generator = require('yeoman-generator');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 
-
+// Export a class that extends the Yeoman Generator
 module.exports = class extends Generator {
+
+    // Use the async/await pattern to prompt the user for information
     async prompting() {
+
+        // Log a message to the console to guide the user through the process
         this.log("Before we start, we'll need a bit of information about this new challenge.");
         this.log("Make sure you have created a resource in the editor and have the UUID ready.");
 
+        // Use the this.prompt() method to ask the user for information and store the answers in this.answers
         this.answers = await this.prompt([
+
+            // Ask for the resource name in kebab-case and validate it
             {
                 type: 'input',
                 name: 'name',
@@ -16,8 +24,8 @@ module.exports = class extends Generator {
                 default: this.appname.replace(/[^a-z0-9-]/ig, '-').toLowerCase(),
                 validate: x => /^[a-z0-9]+(-[a-z0-9]+)*$/.test(x),
             },
-            //Ask the user for the resource UUID from resource editor if not provided generate a random UUID
 
+            // Ask the user for the resource UUID from resource editor if not provided generate a random UUID
             {
                 type: 'input',
                 name: 'uuid',
@@ -26,11 +34,76 @@ module.exports = class extends Generator {
                 validate: x => /^\s*[0-9a-f]{8}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{12}\s*$/i.test(x),
                 filter: x => x.toLowerCase().trim(),
             },
+
+            // Ask the user if they want to create multi or single service docker
             {
+                type: 'list',
+                name: 'multiDocker',
+                message: 'Do you want to create multi service docker or single service docker?',
+                choices: [
+                    {
+                        name: 'Single-service Docker',
+                        value: 'single'
+                    },
+                    {
+                        name: 'Multi-service Docker',
+                        value: 'multi'
+                    }
+                ],
+                default: 'single'
+            },
+
+            // If user selected multi-service docker, ask for the type of multi-service docker to create
+            {
+                when: answers => answers.multiDocker === 'multi',
+                type: 'list',
+                name: 'multiService',
+                message: 'Select an option',
+                choices: [
+                    {
+                        name: 'Exposed nginx server with multiple services',
+                        value: 'multidocker-nginx'
+                    },
+                    {
+                        name: 'One service exposed',
+                        value: 'multidocker-one-service'
+                    },
+                ],
+                default: false,
+            },
+
+            // If user selected single or multidocker-one-service, ask for the type of container they are developing
+            {
+                when: answers => answers.multiDocker === 'single',
+                type: 'list',
+                name: 'dockerType',
+                message: 'What type of container are you developing?',
+                choices: [
+                    {
+                        name: 'A normal web application, hosted through a reverse proxy with HTTPS (idocker)',
+                        short: 'idocker',
+                        value: 'idocker',
+                    },
+                    {
+                        name: 'Any other type of network service (rdocker)',
+                        short: 'rdocker',
+                        value: 'rdocker',
+                    }
+                ],
+                default: false,
+            },
+            {
+                // This question is displayed only if the user is not developing a single service in a multi-container Docker setup.
+
+                when: answers => answers.multiService !== 'multidocker-one-service',
                 type: 'list',
                 name: 'image',
                 message: 'Select base image',
                 choices: [
+                    // These are the available base images that the user can choose from.
+                    // Each choice has a name (displayed to the user), short (a shorter version of the name), and a value (used in the code).
+                    // The `filter` property is used to extract only the image name (without the tag) from the value.
+
                     {
                         name: 'alpine-base-hl: empty base alpine image with flag and user handling, for your own custom service',
                         short: 'alpine-base-hl',
@@ -111,33 +184,15 @@ module.exports = class extends Generator {
                     }
 
                 ],
-                filter: x => x.split(':')[0],
+                filter: x => x.split(':')[0], // Extract only the image name (without the tag) from the value.
             },
-            {
-                type: 'list',
-                name: 'dockerType',
-                message: 'What type of container are you developing?',
-                choices: [
-                    {
-                        name: 'A normal web application, hosted through a reverse proxy with HTTPS (idocker)',
-                        short: 'idocker',
-                        value: 'idocker',
-                    },
-                    {
-                        name: 'Any other type of network service (rdocker)',
-                        short: 'rdocker',
-                        value: 'rdocker',
-                    }
-                ],
-                default: false,
-            },
-
             {
                 type: 'confirm',
                 name: 'goldnugget',
                 message: 'Add support for dynamic goldnugget?',
                 default: true,
             },
+            // If user wants to add support for goldnugget, ask for the type of flag
 
             {
                 when: (answers) => answers.goldnugget,
@@ -159,6 +214,7 @@ module.exports = class extends Generator {
                 default: false
             },
 
+            // Ask user for their name and email
 
             {
                 type: 'input',
@@ -176,62 +232,86 @@ module.exports = class extends Generator {
     }
 
     writing() {
-        const tplFiles = [
-            'docker-compose.yml',
-            'Dockerfile',
-            'gitignore:.gitignore',
-            `${this.answers.image}.md:README.md`,
-            'prepare.sh',
-            'challenge-description',
-        ];
+        if (this.answers.multiService !== 'multidocker-one-service') {
+            const tplFiles = ['gitignore:.gitignore'];
+            tplFiles.push('Dockerfile');
+            tplFiles.push(`${this.answers.image ? this.answers.image + '.md' : 'README.md'}:README.md`);
+            tplFiles.push('docker-compose.yml');
+            tplFiles.push('prepare.sh');
+            tplFiles.push('challenge-description');
+                // Loop through the template files and copy them to the destination directory
 
-        for (const tpl of tplFiles.map(x => x.split(':'))) {
-            if (fs.existsSync(this.templatePath(tpl[0]) + '.' + this.answers.image)) {
-                tpl[1] = tpl[0];
-                tpl[0] += '.' + this.answers.image;
-            }
-            this.fs.copyTpl(
-                this.templatePath(tpl[0]),
-                this.destinationPath(tpl.length > 1 ? tpl[1] : tpl[0]),
-                this.answers
-            );
-        }
 
-        if (this.answers.goldnugget && this.answers.uuid) {
-            if (this.answers.flagType === 'env') {
-                this.fs.write(
-                    this.destinationPath(this.answers.uuid + '.env'),
-                    'GOLDNUGGET=SED_GOLDNUGGET'
-                );
-            } else if (this.answers.flagType === 'file') {
-                this.fs.write(
-                    this.destinationPath(this.answers.uuid + '.gn'),
-                    'GOLDNUGGET=SED_GOLDNUGGET'
+            for (const tpl of tplFiles.map(x => x.split(':'))) {
+                if (
+                    fs.existsSync(
+                        this.templatePath(tpl[0]) +
+                        '.' +
+                        (this.answers.image || '') // use image only if it's defined
+                    )
+                ) {
+                    tpl[1] = tpl[0];
+                    tpl[0] += '.' + (this.answers.image || '');
+                }
+                this.fs.copyTpl(
+                    this.templatePath(tpl[0]),
+                    this.destinationPath(tpl.length > 1 ? tpl[1] : tpl[0]),
+                    this.answers
                 );
             }
+        }
+        // If the project is a multi-container setup and the user wants to use a goldnugget flag
 
-            this.fs.copyTpl(
-                this.templatePath('flag-deploy-scripts'),
-                this.destinationPath('root/flag-deploy-scripts'),
-                this.answers
-            );
-        } else if (!this.answers.goldnugget) {
-            this.fs.write(
-                this.destinationPath('root/no_gn_flag.md'),
-                'This challenge does not support goldnugget as you have chosen not to use it.'
-            );
+        if (this.answers.multiService !== 'multidocker-one-service') {
+            if (this.answers.goldnugget && this.answers.uuid) {
+                if (this.answers.flagType === 'env') {
+                    this.fs.write(
+                        this.destinationPath(this.answers.uuid + '.env'),
+                        'GOLDNUGGET=SED_GOLDNUGGET'
+                    );
+                } else if (this.answers.flagType === 'file') {
+                    this.fs.write(
+                        this.destinationPath(this.answers.uuid + '.gn'),
+                        'GOLDNUGGET=SED_GOLDNUGGET'
+                    );
+                }
+                // Copy the flag-deploy-scripts folder to the destination directory
+                this.fs.copyTpl(
+                    this.templatePath('flag-deploy-scripts'),
+                    this.destinationPath('root/flag-deploy-scripts'),
+                    this.answers
+                );
+                // If the user doesn't want to use a goldnugget flag, create a placeholder file
+
+            } else if (!this.answers.goldnugget) {
+                this.fs.write(
+                    this.destinationPath('root/no_gn_flag.md'),
+                    'This challenge does not support goldnugget as you have chosen not to use it.'
+                );
+            }
+            // If a template file with the same name as the selected image exists, copy it to the destination directory
+
+            if (fs.existsSync(this.templatePath(this.answers.image))) {
+                this.fs.copyTpl(
+                    this.templatePath(this.answers.image),
+                    this.destinationPath('root'),
+                    this.answers
+                );
+            }
         }
 
+        let configFolder;
 
-        if (fs.existsSync(this.templatePath(this.answers.image))) {
-            this.fs.copyTpl(
-                this.templatePath(this.answers.image),
-                this.destinationPath('root'),
-                this.answers
-            );
+        if (this.answers.multiService === 'multidocker-nginx') {
+            configFolder = 'multidocker-nginx';
+        } else if (this.answers.multiService === 'multidocker-one-service') {
+            configFolder = 'multidocker-one-service'; // Use the appropriate folder name for this option
+        } else {
+            configFolder = this.answers.dockerType === 'idocker' ? 'idocker' : 'rdocker';
         }
 
-        const configFolder = this.answers.dockerType === 'idocker' ? 'idocker' : 'rdocker';
+        // Construct path for dockermanager_env_gn.json using the correct folder name
+
         const name = this.answers.name;
         const uuid = this.answers.uuid;
 
@@ -243,38 +323,66 @@ module.exports = class extends Generator {
         const composeFile = 'compose.yml';
 
         const filesToCopy = [dockermanagerFile, composeFile];
+        if (this.answers.multiService) {
+            filesToCopy.push('README.md');
+        }
 
         filesToCopy.forEach((file) => {
             let fileContents = this.fs.read(this.templatePath(`configs/${configFolder}/${file}`));
-
-            // replace resname with the provided name in compose.yml
             if (file === composeFile) {
-                fileContents = fileContents.replace(/resname/g, name);
+                let lines = fileContents.split('\n');
 
-                if (this.answers.flagType === 'file') {
-                    fileContents += `
-    volumes:
-      - ./${uuid}---hobo.gn:/goldnugget/uuid.gn
-                  `;
-                } else if (this.answers.flagType === 'env') {
-                    fileContents += `
-    env_file:
-      - ./${uuid}.env
-                  `;
-                }
+                // Replace resname with the provided name
+                lines = lines.map(line => line.replace(/resname/g, name));
+
+                let newLines = [];
+                let skipNextLine = false;
+
+                lines.forEach(line => {
+                    if (skipNextLine) {
+                        // Skip the current line and reset the flag
+                        skipNextLine = false;
+                        return;
+                    }
+
+                    if (this.answers.flagType === 'file' && line.trim().startsWith('env_file:')) {
+                        // Skip the line if it starts with env_file: and flag type is 'file'
+                        skipNextLine = true;
+                        return;
+                    }
+
+                    if (this.answers.flagType === 'env' && line.trim().startsWith('volumes:')) {
+                        // Skip the line if it starts with volumes: and flag type is 'env'
+                        skipNextLine = true;
+                        return;
+                    }
+                    if (!this.answers.flagType && (line.trim().startsWith('env_file:') || line.trim().startsWith('volumes:'))) {
+                        // Skip the line if flag type is empty and the line starts with env_file: or volumes:
+                        skipNextLine = true;
+                        return;
+                    }
+
+                    // Replace the UUID placeholder with the actual UUID
+                    line = line.replace(/uuid_hl_unique/g, uuid);
+                    line = line.replace(/uuid_hl_unique---hobo.gn/g, uuid + '---hobo.gn');
+
+                    newLines.push(line);
+                });
 
                 if (this.answers.dockerType === 'rdocker') {
-                    fileContents += `
-    networks:
-      - rdocker
-              
-networks:
-  rdocker:
-    external: true
-                  `;
+                    // Add rdocker networks configuration at the end
+                    newLines.push(``);
+                    newLines.push(`    networks:`);
+                    newLines.push(`      - rdocker`);
+                    newLines.push(``);
+                    newLines.push(`networks:`);
+                    newLines.push(`  rdocker:`);
+                    newLines.push(`    external: true`);
                 }
-            }
 
+                // Join lines to form the new fileContents
+                fileContents = newLines.join('\n');
+            }
 
 
             // replace uuid with the provided uuid in dockermanager.json

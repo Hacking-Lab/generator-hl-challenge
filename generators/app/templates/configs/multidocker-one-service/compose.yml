@@ -1,0 +1,34 @@
+version: '2.3'
+
+services:
+  resname-hobo:
+    image: REGISTRY_BASE_URL/resname-hobo:stable
+    hostname: 'hobo'
+    environment:
+      - "domainname=idocker.REALM_DOMAIN_SUFFIX"
+    depends_on:
+      - depend-resname-hobo
+    cpus: 1
+    mem_limit: 512M
+    labels:
+      - "traefik.port=ENTER_YOUR_PORT_NUMBER_HERE"
+      - "traefik.frontend.rule=Host:hobo.idocker.REALM_DOMAIN_SUFFIX"
+      - "traefik.protocol=http"
+      - "traefik.frontend.errors.network.status=500-599"
+      - "traefik.frontend.errors.network.backend=errorpage"
+      - "traefik.frontend.errors.network.query=/{status}.html"
+
+  depend-resname-hobo:
+    image: REGISTRY_BASE_URL/depend-resname-hobo:stable
+    hostname: 'hobo'
+    environment:
+      - "domainname=idocker.REALM_DOMAIN_SUFFIX"
+    cpus: 1
+    mem_limit: 512M
+    labels:
+      - "traefik.port=ENTER_YOUR_PORT_NUMBER_HERE"
+      - "traefik.frontend.rule=Host:hobo.idocker.REALM_DOMAIN_SUFFIX"
+      - "traefik.protocol=http"
+      - "traefik.frontend.errors.network.status=500-599"
+      - "traefik.frontend.errors.network.backend=errorpage"
+      - "traefik.frontend.errors.network.query=/{status}.html"
