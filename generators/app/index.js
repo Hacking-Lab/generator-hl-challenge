@@ -239,6 +239,7 @@ module.exports = class extends Generator {
             tplFiles.push('docker-compose.yml');
             tplFiles.push('prepare.sh');
             tplFiles.push('challenge-description');
+            tplFiles.push('challenge-tester');
                 // Loop through the template files and copy them to the destination directory
 
 
