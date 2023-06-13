@@ -110,7 +110,8 @@ for challenge_path in args.challenges_to_check:
 
 if validation_errors_found:
     if not args.fix_challenge:
-        print(
+        print_color(
+            Fore.YELLOW,
             f'You can try to autofix the challenge by using:\n'
             f'  {sys.argv[0]} --fix --challenge {" ".join(args.challenges_to_check)}')
     exit(1)

@@ -5,8 +5,11 @@ if [ -z "$UUID" ]; then
     read UUID
 fi
 
-(cd challenge-tester/ && ./hl-challenge-config-checker.py -c ../)
+./challenge-tester/hl-challenge-config-checker.py -c ./ || exit 1
 
+echo "============================================================
+=================== Creating tar.gz ===================="
+echo ""
 
 [ -e dockerfiles.tar.gz ] && rm dockerfiles.tar.gz
 
