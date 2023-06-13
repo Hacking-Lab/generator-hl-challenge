@@ -4,16 +4,19 @@ import argparse
 from colorama import Fore
 import glob
 import os
+import sys
 from lib.basetypes import Challenge, ValidatorBase, AutoFixPossibility
 from lib.helperfunctions import print_color, create_banner
 
 BANNER_CHAR = '='
 CHALLENGE_BANNER_LENGTH = 60
+SCRIPT_FILENAME = os.path.basename(__file__)
+SCRIPT_DIR = os.path.dirname(__file__)
 
 # Command line argument handling #
 #####################################
 parser = argparse.ArgumentParser(
-    prog='./hl-challenge-config-checker.py',
+    prog=f'./{SCRIPT_FILENAME}',
     description='A tool to check (and fix) a challenge if it not complies the HL standard.\n'
                 'The following checks are done:\n'
                 ' - If FILE flag is used then all ENV flag files should be removed and vice versa.\n'
@@ -82,9 +85,9 @@ def handle_challenge(challenge: Challenge):
 
 
 # Load validator modules
-module_files = glob.glob(f'{os.path.dirname(__file__)}/lib/validators/*.py')
+module_files = glob.glob(f'{SCRIPT_DIR}/lib/validators/*.py')
 for module_file in module_files:
-    module_namespace = os.path.relpath(module_file).replace('/', '.').replace('.py', '')
+    module_namespace = os.path.relpath(module_file, SCRIPT_DIR).replace('/', '.').replace('.py', '')
     module = __import__(module_namespace)
 
 validation_errors_found = False
@@ -105,4 +108,11 @@ for challenge_path in args.challenges_to_check:
 
     print()
 
-exit(1) if validation_errors_found else exit(0)
+if validation_errors_found:
+    if not args.fix_challenge:
+        print(
+            f'You can try to autofix the challenge by using:\n'
+            f'  {sys.argv[0]} --fix --challenge {" ".join(args.challenges_to_check)}')
+    exit(1)
+else:
+    exit(0)

@@ -280,14 +280,14 @@ module.exports = class extends Generator {
                 // check for flag type and copy the correct flag deploy script
                 if (this.answers.flagType === 'env') {
                     this.fs.copyTpl(
-                        this.templatePath('flag-deploy-scripts'),
+                        this.templatePath('flag-deploy-scripts/deploy-env-flag.sh'),
                         this.destinationPath('root/flag-deploy-scripts/deploy-env-flag.sh'),
                         this.answers
                     );
                 }
                 if (this.answers.flagType === 'file') {
                     this.fs.copyTpl(
-                        this.templatePath('flag-deploy-scripts'),
+                        this.templatePath('flag-deploy-scripts/deploy-file-flag.sh'),
                         this.destinationPath('root/flag-deploy-scripts/deploy-file-flag.sh'),
                         this.answers
                     );
