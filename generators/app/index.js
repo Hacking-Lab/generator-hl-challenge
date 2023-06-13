@@ -277,11 +277,21 @@ module.exports = class extends Generator {
                     );
                 }
                 // Copy the flag-deploy-scripts folder to the destination directory
-                this.fs.copyTpl(
-                    this.templatePath('flag-deploy-scripts'),
-                    this.destinationPath('root/flag-deploy-scripts'),
-                    this.answers
-                );
+                // check for flag type and copy the correct flag deploy script
+                if (this.answers.flagType === 'env') {
+                    this.fs.copyTpl(
+                        this.templatePath('flag-deploy-scripts'),
+                        this.destinationPath('root/flag-deploy-scripts/deploy-env-flag.sh'),
+                        this.answers
+                    );
+                }
+                if (this.answers.flagType === 'file') {
+                    this.fs.copyTpl(
+                        this.templatePath('flag-deploy-scripts'),
+                        this.destinationPath('root/flag-deploy-scripts/deploy-file-flag.sh'),
+                        this.answers
+                    );
+                }
                 // If the user doesn't want to use a goldnugget flag, create a placeholder file
 
             } else if (!this.answers.goldnugget) {
