@@ -18,5 +18,5 @@ See [hacking-lab/<%= image %>](https://github.com/Hacking-Lab/<%= image %>/) for
 - Edit all the `.md` files except `_howto` and `Readme` 
 
 ## Building & testing
-- Build and run: `docker-compose up --build`, then navigate to [http://localhost:7681](http://localhost:7681)
+- Build and run: `docker-compose up --build`, then navigate to [http://localhost:80](http://localhost:80)
 - Deploy: `./prepare.sh`, then upload `dockerfiles.tar.gz`

@@ -14,9 +14,8 @@ echo ""
 [ -e dockerfiles.tar.gz ] && rm dockerfiles.tar.gz
 
 if [ -e "$UUID".* ]; then
-    tar cvzf dockerfiles.tar.gz Dockerfile $UUID.* root/ challenge-description/ configs/
+    tar cvzf dockerfiles.tar.gz --exclude='**/node_modules/*' Dockerfile $UUID.* root/ challenge-description/ configs/
 else
-    tar cvzf dockerfiles.tar.gz Dockerfile root/ challenge-description/ configs/
+    tar cvzf dockerfiles.tar.gz --exclude='**/node_modules/*' Dockerfile root/ challenge-description/ configs/
 fi
-
 md5sum dockerfiles.tar.gz

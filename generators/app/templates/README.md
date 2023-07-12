@@ -3,7 +3,7 @@
 ## Building & testing
 - Build and run: `docker-compose up --build`
 - Check the docker-compose.yml 
-- Connect to the service; e.g. [http://localhost:8000](http://localhost:8000)
+- Connect to the service; e.g. [http://localhost:80](http://localhost:80)
 
 ## Adding Challenge Description
 - Navigate to challenge-description folder

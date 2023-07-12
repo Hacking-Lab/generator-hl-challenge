@@ -1,10 +1,10 @@
 # <%= name %> (<%= uuid %>)
-This docker is based on the Alpine Python Flask image of the Hacking-Lab CTF system.  
-This docker provides a python flask app.
+This docker is based on the Ubuntu 22.04 Base image of the Hacking-Lab CTF system.
+This docker provides nothing (only base for other images).
 
 ## Customizing
-- Place your web application in `./root/app/app.py`
-- Put dependencies in `./root/app/requirements.txt` to install them during build
+- Put your application somewhere in the ./root/ folder
+- Write a s6 startup script and put it into ./root/etc/services.d/{YOUR_SERVICE}/run
 
 ## GitHub
 See [hacking-lab/<%= image %>](https://github.com/Hacking-Lab/<%= image %>/) for full information information.
@@ -14,5 +14,5 @@ See [hacking-lab/<%= image %>](https://github.com/Hacking-Lab/<%= image %>/) for
 - Edit all the `.md` files except `_howto` and `Readme` 
 
 ## Building & testing
-- Build and run: `docker-compose up --build`, then navigate to [http://localhost:80](http://localhost:80)
+- Build and run: `docker-compose up --build`
 - Deploy: `./prepare.sh`, then upload `dockerfiles.tar.gz`

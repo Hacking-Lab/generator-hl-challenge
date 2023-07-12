@@ -105,14 +105,36 @@ module.exports = class extends Generator {
                     // The `filter` property is used to extract only the image name (without the tag) from the value.
 
                     {
-                        name: 'alpine-base-hl: empty base alpine image with flag and user handling, for your own custom service',
+                        name: 'alpine-base-hl: Empty base alpine image with flag and user handling, for your own custom service',
                         short: 'alpine-base-hl',
                         value: 'alpine-base-hl'
                     },
+                    
                     {
-                        name: 'alpine-nginx-hl: NGINX web server for static web sites',
+                        name: 'ubuntu-18-base-hl: Empty base ubuntu 18 image with flag and user handling, for your own custom service',
+                        short: 'ubuntu-18-base-hl',
+                        value: 'ubuntu-18-base-hl'
+                    },
+
+                    {
+                        name: 'ubuntu-22.04-base-hl: Empty base ubuntu 22.04 image with flag and user handling, for your own custom service',
+                        short: 'ubuntu-22.04-base-hl',
+                        value: 'ubuntu-22.04-base-hl'
+                    },
+                    {
+                        name: 'alpine-nginx-hl: Alpine NGINX web server for static web sites',
                         short: 'alpine-nginx-hl',
                         value: 'alpine-nginx-hl'
+                    },
+                    {
+                        name: 'ubuntu-18-nginx-hl: Ubuntu 18 NGINX web server for static web sites',
+                        short: 'ubuntu-18-nginx-hl',
+                        value: 'ubuntu-18-nginx-hl'
+                    },
+                    {
+                        name: 'ubuntu-22.04-nginx-hl: Ubuntu 22.04 NGINX web server for static web sites',
+                        short: 'ubuntu-22.04-nginx-hl',
+                        value: 'ubuntu-22.04-nginx-hl'
                     },
                     {
                         name: 'alpine-nginx-php-hl: NGINX-PHP web server for static and dynamic web sites',
@@ -182,6 +204,7 @@ module.exports = class extends Generator {
                         short: 'alpine-apache2-hl',
                         value: 'alpine-apache2-hl'
                     }
+
 
                 ],
                 filter: x => x.split(':')[0], // Extract only the image name (without the tag) from the value.
