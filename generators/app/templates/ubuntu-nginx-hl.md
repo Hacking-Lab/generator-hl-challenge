@@ -1,5 +1,5 @@
 # <%= name %> (<%= uuid %>)
-This docker is based on the Ubuntu 22.04 nginx image of the Hacking-Lab CTF system.
+This docker is based on the Ubuntu <%= versionTag %> nginx image of the Hacking-Lab CTF system.
 This docker provides a static web server based on nginx.
 
 ## Customizing
@@ -7,7 +7,7 @@ This docker provides a static web server based on nginx.
 - Please your site configuration in `./root/configs/default`
 
 ## GitHub
-See [hacking-lab/<%= image %>](https://github.com/Hacking-Lab/<%= image %>/) for full information information.
+See [hacking-lab/<%= image %>:<%= versionTag  %>](https://github.com/Hacking-Lab/<%= image %>-<%= versionTag  %>) for full information information.
 
 ## Adding Challenge Description
 - Navigate to challenge-description folder

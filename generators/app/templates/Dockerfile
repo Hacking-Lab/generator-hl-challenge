@@ -126,6 +126,28 @@ EXPOSE 80
 
 <% }
 
+else if (image == 'ubuntu-base-hl') { %>
+
+FROM hackinglab/<%= image %>:<%= versionTag %>
+
+LABEL maintainer=<<%= authorEmail %>>
+MAINTAINER <%= authorName %> <<%= authorEmail %>>
+
+ADD root /
+
+<% }
+
+else if (image == 'ubuntu-nginx-hl') { %>
+
+FROM hackinglab/<%= image %>:<%= versionTag %>
+
+LABEL maintainer=<<%= authorEmail %>>
+MAINTAINER <%= authorName %> <<%= authorEmail %>>
+
+ADD root /
+
+<% }
+
 
 else {%>
 

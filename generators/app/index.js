@@ -93,48 +93,81 @@ module.exports = class extends Generator {
                 default: false,
             },
             {
-                // This question is displayed only if the user is not developing a single service in a multi-container Docker setup.
+                type: 'list',
+                name: 'imageDistribution',
+                message: 'Select the Image Distribution type:',
+                choices: [
+                    {
+                        name: 'Ubuntu',
+                        value: 'ubuntu',
+                    },
+                    {
+                        name: 'Alpine',
+                        value: 'alpine',
+                    }
+                ],
+                default: 'alpine'
+            },
 
-                when: answers => answers.multiService !== 'multidocker-one-service',
+            {
+                when: answers => answers.multiService !== 'multidocker-one-service' && answers.imageDistribution === 'ubuntu',
+                type: 'list',
+                name: 'versionTag',
+                message: 'Select Ubuntu Version:',
+                choices: [
+                    {
+                        name: 'Ubuntu Latest',
+                        value: 'latest',
+                    },
+                    {
+                        name: 'Ubuntu 18.04',
+                        value: '18.04',
+                    },
+                    {
+                        name: 'Ubuntu 22.04',
+                        value: '22.04',
+                    }
+                ],
+                default: 'latest'
+            },
+            
+            // Prompt for the base image
+            {
+                when: answers => answers.multiService !== 'multidocker-one-service' && answers.imageDistribution === 'ubuntu',
                 type: 'list',
                 name: 'image',
                 message: 'Select base image',
                 choices: [
-                    // These are the available base images that the user can choose from.
-                    // Each choice has a name (displayed to the user), short (a shorter version of the name), and a value (used in the code).
-                    // The `filter` property is used to extract only the image name (without the tag) from the value.
+                    {
+                        name: 'ubuntu-base-hl : Empty base Ubuntu image with flag and user handling, for your own custom service',
+                        short: 'ubuntu-base-hl',
+                        value: 'ubuntu-base-hl'
+                    },
+                    {
+                        name: 'ubuntu-nginx-hl : Ubuntu NGINX web server for static web sites',
+                        short: 'ubuntu-nginx-hl',
+                        value: 'ubuntu-nginx-hl'
+                    }
+                    //Add more images here in future
+                ],
+                filter: x => x.split(':')[0], // Extract only the image name (without the tag) from the value.
+            },
+            {
+                when: answers => answers.multiService !== 'multidocker-one-service' && answers.imageDistribution === 'alpine',
+                type: 'list',
+                name: 'image',
+                message: 'Select base image',
+                choices: [
 
                     {
-                        name: 'alpine-base-hl: Empty base alpine image with flag and user handling, for your own custom service',
+                        name: 'alpine-base-hl: Empty base Alpine image with flag and user handling, for your own custom service',
                         short: 'alpine-base-hl',
                         value: 'alpine-base-hl'
-                    },
-                    
-                    {
-                        name: 'ubuntu-18-base-hl: Empty base ubuntu 18 image with flag and user handling, for your own custom service',
-                        short: 'ubuntu-18-base-hl',
-                        value: 'ubuntu-18-base-hl'
-                    },
-
-                    {
-                        name: 'ubuntu-22.04-base-hl: Empty base ubuntu 22.04 image with flag and user handling, for your own custom service',
-                        short: 'ubuntu-22.04-base-hl',
-                        value: 'ubuntu-22.04-base-hl'
                     },
                     {
                         name: 'alpine-nginx-hl: Alpine NGINX web server for static web sites',
                         short: 'alpine-nginx-hl',
                         value: 'alpine-nginx-hl'
-                    },
-                    {
-                        name: 'ubuntu-18-nginx-hl: Ubuntu 18 NGINX web server for static web sites',
-                        short: 'ubuntu-18-nginx-hl',
-                        value: 'ubuntu-18-nginx-hl'
-                    },
-                    {
-                        name: 'ubuntu-22.04-nginx-hl: Ubuntu 22.04 NGINX web server for static web sites',
-                        short: 'ubuntu-22.04-nginx-hl',
-                        value: 'ubuntu-22.04-nginx-hl'
                     },
                     {
                         name: 'alpine-nginx-php-hl: NGINX-PHP web server for static and dynamic web sites',

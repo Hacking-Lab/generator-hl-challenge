@@ -1,5 +1,5 @@
 # <%= name %> (<%= uuid %>)
-This docker is based on the Ubuntu 22.04 Base image of the Hacking-Lab CTF system.
+This docker is based on the Ubuntu <%= versionTag %> Base image of the Hacking-Lab CTF system.
 This docker provides nothing (only base for other images).
 
 ## Customizing
@@ -7,8 +7,7 @@ This docker provides nothing (only base for other images).
 - Write a s6 startup script and put it into ./root/etc/services.d/{YOUR_SERVICE}/run
 
 ## GitHub
-See [hacking-lab/<%= image %>](https://github.com/Hacking-Lab/<%= image %>/) for full information information.
-
+See [hacking-lab/<%= image %>:<%= versionTag  %>](https://github.com/Hacking-Lab/<%= image %>-<%= versionTag  %>) for full information information.
 ## Adding Challenge Description
 - Navigate to challenge-description folder
 - Edit all the `.md` files except `_howto` and `Readme` 
