@@ -1,4 +1,4 @@
-<% if (image == 'alpine-python-flask-hl') { %>
+<% if (image == 'alpine-python-flask-hl') { -%>
 
 FROM hackinglab/<%= image %>:latest
 
@@ -13,7 +13,7 @@ ADD root /
 
 <% } 
 
-else if (image == 'alpine-binary-c-hl') { %>
+else if (image == 'alpine-binary-c-hl') { -%>
 
 FROM hackinglab/alpine-base-hl:latest
 
@@ -33,7 +33,7 @@ RUN tar cf /web/server.tar /server /lib/ld-musl-x86_64.so.1 /usr/lib/libseccomp.
 <% }
 
 
-else if (image == 'alpine-binary-c-dynamic-hl') { %>
+else if (image == 'alpine-binary-c-dynamic-hl') { -%>
 
 FROM hackinglab/alpine-base-hl:latest
 LABEL maintainer=<>
@@ -52,7 +52,7 @@ RUN tar cf /web/support.tar  /ld-musl-x86_64.so.1 /libseccomp.so.2.5.2
 <% }
 
 
-else if (image == 'alpine-unitd-hl') { %>
+else if (image == 'alpine-unitd-hl') { -%>
 
 FROM hackinglab/alpine-base-hl:latest
 LABEL maintainer=<>
@@ -69,7 +69,7 @@ ENTRYPOINT ["unitd", "--no-daemon", "--log", "/dev/stderr"]
 
 <% }
 
-else if (image == 'alpine-tinyproxy-hl') { %>
+else if (image == 'alpine-tinyproxy-hl') { -%>
 
 FROM hackinglab/alpine-tinyproxy-hl:latest
 
@@ -88,7 +88,7 @@ CMD ["tinyproxy", "-d"]
 
 <% }
 
-else if (image == 'alpine-nginx-theia-ide') { %>
+else if (image == 'alpine-nginx-theia-ide') { -%>
 
 FROM hackinglab/alpine-nginx-with-theia-web-ide:latest
 
@@ -104,7 +104,7 @@ RUN chown -R 2000:2000 /home/theia
 
 <% }
 
-else if (image == 'alpine-apache2-hl') { %>
+else if (image == 'alpine-apache2-hl') { -%>
 
 FROM hackinglab/alpine-apache2-hl:3.2
 
@@ -126,7 +126,7 @@ EXPOSE 80
 
 <% }
 
-else if (image == 'ubuntu-base-hl') { %>
+else if (image == 'ubuntu-base-hl') { -%>
 
 FROM hackinglab/<%= image %>:<%= versionTag %>
 
@@ -137,7 +137,7 @@ ADD root /
 
 <% }
 
-else if (image == 'ubuntu-nginx-hl') { %>
+else if (image == 'ubuntu-nginx-hl') { -%>
 
 FROM hackinglab/<%= image %>:<%= versionTag %>
 
