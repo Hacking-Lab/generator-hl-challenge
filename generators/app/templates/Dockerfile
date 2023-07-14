@@ -1,9 +1,9 @@
-<% if (image == 'alpine-python-flask-hl') { -%> FROM hackinglab/<%= image %>:latest
+<% if (image == 'alpine-python-flask-hl') { -%>FROM hackinglab/<%= image %>:latest
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
-# Install app requirements (keep separate from other files to allow quicker build times)
+# Install app requirements (keep separateFROM other files to allow quicker build times)
 ADD root/app/requirements.txt /app/requirements.txt
 RUN pip3 install -r /app/requirements.txt
 
@@ -11,7 +11,7 @@ ADD root /
 
 <%} 
 
-else if (image == 'alpine-binary-c-hl') { -%> FROM hackinglab/alpine-base-hl:latest
+else if (image == 'alpine-binary-c-hl') { -%>FROM hackinglab/alpine-base-hl:latest
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
@@ -20,7 +20,7 @@ ADD root /
 RUN apk update
 RUN chmod +x /etc/services.d/*/run 
 RUN apk add --no-cache gcc libc-dev unit curl libseccomp libseccomp-dev socat unit
-# Compiling binary from source ( replace the binary with the one from the challenge - /src/binary.c)
+# Compiling binaryFROM source ( replace the binary with the oneFROM the challenge - /src/binary.c)
 
 
 RUN gcc /src/binary.c -o /server -lseccomp
@@ -29,7 +29,7 @@ RUN tar cf /web/server.tar /server /lib/ld-musl-x86_64.so.1 /usr/lib/libseccomp.
 <%}
 
 
-else if (image == 'alpine-binary-c-dynamic-hl') { -%> FROM hackinglab/alpine-base-hl:latest
+else if (image == 'alpine-binary-c-dynamic-hl') { -%>FROM hackinglab/alpine-base-hl:latest
 
 LABEL maintainer=<>
 MAINTAINER  <>
@@ -37,7 +37,7 @@ ADD root /
 RUN apk update 
 RUN chmod +x /etc/services.d/*/run
 RUN apk add --no-cache gcc libc-dev unit curl libseccomp libseccomp-dev socat unit
-# Compiling binary from source ( replace the binary with the one from the challenge - /src/binary.c)
+# Compiling binaryFROM source ( replace the binary with the oneFROM the challenge - /src/binary.c)
 
 RUN cp /lib/ld-musl-x86_64.so.1 /
 RUN cp /usr/lib/libseccomp.so.2.5.2 /
@@ -46,7 +46,7 @@ RUN tar cf /web/support.tar  /ld-musl-x86_64.so.1 /libseccomp.so.2.5.2
 
 <%}
 
-else if (image == 'alpine-unitd-hl') { -%> FROM hackinglab/alpine-base-hl:latest
+else if (image == 'alpine-unitd-hl') { -%>FROM hackinglab/alpine-base-hl:latest
 
 LABEL maintainer=<>
 MAINTAINER  <>
@@ -62,7 +62,7 @@ ENTRYPOINT ["unitd", "--no-daemon", "--log", "/dev/stderr"]
 
 <%}
 
-else if (image == 'alpine-tinyproxy-hl') { -%> FROM hackinglab/alpine-tinyproxy-hl:latest
+else if (image == 'alpine-tinyproxy-hl') { -%>FROM hackinglab/alpine-tinyproxy-hl:latest
 
 LABEL maintainer=<>
 MAINTAINER  <>
@@ -79,7 +79,7 @@ CMD ["tinyproxy", "-d"]
 
 <%}
 
-else if (image == 'alpine-nginx-theia-ide') { -%> FROM hackinglab/alpine-nginx-with-theia-web-ide:latest
+else if (image == 'alpine-nginx-theia-ide') { -%>FROM hackinglab/alpine-nginx-with-theia-web-ide:latest
 
 LABEL maintainer=<<%= authorEmail %>>
 
@@ -93,7 +93,7 @@ RUN chown -R 2000:2000 /home/theia
 
 <%}
 
-else if (image == 'alpine-apache2-hl') { -%> FROM hackinglab/alpine-apache2-hl:3.2
+else if (image == 'alpine-apache2-hl') { -%>FROM hackinglab/alpine-apache2-hl:3.2
 
 LABEL maintainer=<<%= authorEmail %>>
 
@@ -113,7 +113,7 @@ EXPOSE 80
 
 <%}
 
-else if (image == 'ubuntu-base-hl') { -%> FROM hackinglab/<%= image %>:<%= versionTag %>
+else if (image == 'ubuntu-base-hl') { -%>FROM hackinglab/<%= image %>:<%= versionTag %>
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
@@ -122,7 +122,7 @@ ADD root /
 
 <%}
 
-else if (image == 'ubuntu-nginx-hl') { -%> FROM hackinglab/<%= image %>:<%= versionTag %>
+else if (image == 'ubuntu-nginx-hl') { -%>FROM hackinglab/<%= image %>:<%= versionTag %>
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
@@ -131,7 +131,7 @@ ADD root /
 
 <%}
 
-else if (image == 'ubuntu-nginx-nodejs-hl') { -%> FROM hackinglab/<%= image %>:<%= versionTag %>
+else if (image == 'ubuntu-nginx-nodejs-hl') { -%>FROM hackinglab/<%= image %>:<%= versionTag %>
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
@@ -141,7 +141,7 @@ ADD root /
 <%}
 
 
-else {%> FROM hackinglab/<%= image %>:latest
+else {%>FROM hackinglab/<%= image %>:latest
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
