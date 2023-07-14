@@ -169,7 +169,7 @@ MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
 ADD root /
 
-<%- }
+<% }
 
 %>
 
