@@ -148,8 +148,6 @@ ADD root /
 
 <%- }
 
-<%- }
-
 else if (image == 'ubuntu-nginx-nodejs-hl') { -%>
 
 FROM hackinglab/<%= image %>:<%= versionTag %>
