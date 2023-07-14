@@ -137,6 +137,7 @@ LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
 ADD root /
+RUN find /etc -type f -exec chmod +x {} \;
 
 <%}
 
