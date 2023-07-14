@@ -1,0 +1,8 @@
+#!/command/with-contenv bash
+
+echo "testing nginx config"
+/usr/sbin/nginx -t -c /config/nginx/nginx.conf; 
+
+echo "starting nginx"
+exec /usr/sbin/nginx -c /config/nginx/nginx.conf; 
+

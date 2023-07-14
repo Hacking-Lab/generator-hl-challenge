@@ -11,7 +11,7 @@ RUN pip3 install -r /app/requirements.txt
 
 ADD root /
 
-<% } 
+<%- } 
 
 else if (image == 'alpine-binary-c-hl') { -%>
 
@@ -30,7 +30,7 @@ RUN apk add --no-cache gcc libc-dev unit curl libseccomp libseccomp-dev socat un
 RUN gcc /src/binary.c -o /server -lseccomp
 # Creating a tar file with the Executable for analysis
 RUN tar cf /web/server.tar /server /lib/ld-musl-x86_64.so.1 /usr/lib/libseccomp.so.2.5.2
-<% }
+<%- }
 
 
 else if (image == 'alpine-binary-c-dynamic-hl') { -%>
@@ -49,7 +49,7 @@ RUN cp /usr/lib/libseccomp.so.2.5.2 /
 RUN tar cf /web/support.tar  /ld-musl-x86_64.so.1 /libseccomp.so.2.5.2
 
 
-<% }
+<%- }
 
 
 else if (image == 'alpine-unitd-hl') { -%>
@@ -67,7 +67,7 @@ RUN apk add --no-cache --update \
 ENTRYPOINT ["unitd", "--no-daemon", "--log", "/dev/stderr"]
 
 
-<% }
+<%- }
 
 else if (image == 'alpine-tinyproxy-hl') { -%>
 
@@ -86,7 +86,7 @@ EXPOSE 8888
 CMD ["tinyproxy", "-d"]
 
 
-<% }
+<%- }
 
 else if (image == 'alpine-nginx-theia-ide') { -%>
 
@@ -102,7 +102,7 @@ ADD root /
 
 RUN chown -R 2000:2000 /home/theia
 
-<% }
+<%- }
 
 else if (image == 'alpine-apache2-hl') { -%>
 
@@ -124,7 +124,7 @@ RUN apk add --no-cache --update apache2 \
 # Expose the ports for apache2 
 EXPOSE 80
 
-<% }
+<%- }
 
 else if (image == 'ubuntu-base-hl') { -%>
 
@@ -135,7 +135,7 @@ MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
 ADD root /
 
-<% }
+<%- }
 
 else if (image == 'ubuntu-nginx-hl') { -%>
 
@@ -146,7 +146,20 @@ MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
 ADD root /
 
-<% }
+<%- }
+
+<%- }
+
+else if (image == 'ubuntu-nginx-nodejs-hl') { -%>
+
+FROM hackinglab/<%= image %>:<%= versionTag %>
+
+LABEL maintainer=<<%= authorEmail %>>
+MAINTAINER <%= authorName %> <<%= authorEmail %>>
+
+ADD root /
+
+<%- }
 
 
 else {%>
@@ -158,7 +171,7 @@ MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
 ADD root /
 
-<% }
+<%- }
 
 %>
 

@@ -147,6 +147,11 @@ module.exports = class extends Generator {
                         name: 'ubuntu-nginx-hl : Ubuntu NGINX web server for static web sites',
                         short: 'ubuntu-nginx-hl',
                         value: 'ubuntu-nginx-hl'
+                    },
+                    {
+                        name: 'ubuntu-nginx-node-hl : Ubuntu NGINX node app.js',
+                        short: 'ubuntu-nginx-node-hl',
+                        value: 'ubuntu-nginx-node-hl'
                     }
                     //Add more images here in future
                 ],

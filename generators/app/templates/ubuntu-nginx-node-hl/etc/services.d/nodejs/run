@@ -1,0 +1,12 @@
+#!/command/with-contenv bash
+
+echo "================================="
+echo $HL_USER_USERNAME
+echo "================================="
+
+. /etc/hluser
+chown -R node:node /opt/nodejs
+cd /opt/nodejs
+exec sudo -u node node app.js;
+
+
