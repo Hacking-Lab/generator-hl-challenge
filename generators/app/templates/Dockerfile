@@ -1,6 +1,4 @@
-<% if (image == 'alpine-python-flask-hl') { -%>
-
-FROM hackinglab/<%= image %>:latest
+<% if (image == 'alpine-python-flask-hl') { -%> FROM hackinglab/<%= image %>:latest
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
@@ -11,11 +9,9 @@ RUN pip3 install -r /app/requirements.txt
 
 ADD root /
 
-<%- } 
+<%} 
 
-else if (image == 'alpine-binary-c-hl') { -%>
-
-FROM hackinglab/alpine-base-hl:latest
+else if (image == 'alpine-binary-c-hl') { -%> FROM hackinglab/alpine-base-hl:latest
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
@@ -30,12 +26,11 @@ RUN apk add --no-cache gcc libc-dev unit curl libseccomp libseccomp-dev socat un
 RUN gcc /src/binary.c -o /server -lseccomp
 # Creating a tar file with the Executable for analysis
 RUN tar cf /web/server.tar /server /lib/ld-musl-x86_64.so.1 /usr/lib/libseccomp.so.2.5.2
-<%- }
+<%}
 
 
-else if (image == 'alpine-binary-c-dynamic-hl') { -%>
+else if (image == 'alpine-binary-c-dynamic-hl') { -%> FROM hackinglab/alpine-base-hl:latest
 
-FROM hackinglab/alpine-base-hl:latest
 LABEL maintainer=<>
 MAINTAINER  <>
 ADD root /
@@ -49,12 +44,10 @@ RUN cp /usr/lib/libseccomp.so.2.5.2 /
 RUN tar cf /web/support.tar  /ld-musl-x86_64.so.1 /libseccomp.so.2.5.2
 
 
-<%- }
+<%}
 
+else if (image == 'alpine-unitd-hl') { -%> FROM hackinglab/alpine-base-hl:latest
 
-else if (image == 'alpine-unitd-hl') { -%>
-
-FROM hackinglab/alpine-base-hl:latest
 LABEL maintainer=<>
 MAINTAINER  <>
 ADD root /
@@ -67,11 +60,9 @@ RUN apk add --no-cache --update \
 ENTRYPOINT ["unitd", "--no-daemon", "--log", "/dev/stderr"]
 
 
-<%- }
+<%}
 
-else if (image == 'alpine-tinyproxy-hl') { -%>
-
-FROM hackinglab/alpine-tinyproxy-hl:latest
+else if (image == 'alpine-tinyproxy-hl') { -%> FROM hackinglab/alpine-tinyproxy-hl:latest
 
 LABEL maintainer=<>
 MAINTAINER  <>
@@ -86,11 +77,9 @@ EXPOSE 8888
 CMD ["tinyproxy", "-d"]
 
 
-<%- }
+<%}
 
-else if (image == 'alpine-nginx-theia-ide') { -%>
-
-FROM hackinglab/alpine-nginx-with-theia-web-ide:latest
+else if (image == 'alpine-nginx-theia-ide') { -%> FROM hackinglab/alpine-nginx-with-theia-web-ide:latest
 
 LABEL maintainer=<<%= authorEmail %>>
 
@@ -102,11 +91,9 @@ ADD root /
 
 RUN chown -R 2000:2000 /home/theia
 
-<%- }
+<%}
 
-else if (image == 'alpine-apache2-hl') { -%>
-
-FROM hackinglab/alpine-apache2-hl:3.2
+else if (image == 'alpine-apache2-hl') { -%> FROM hackinglab/alpine-apache2-hl:3.2
 
 LABEL maintainer=<<%= authorEmail %>>
 
@@ -124,52 +111,44 @@ RUN apk add --no-cache --update apache2 \
 # Expose the ports for apache2 
 EXPOSE 80
 
-<%- }
+<%}
 
-else if (image == 'ubuntu-base-hl') { -%>
-
-FROM hackinglab/<%= image %>:<%= versionTag %>
+else if (image == 'ubuntu-base-hl') { -%> FROM hackinglab/<%= image %>:<%= versionTag %>
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
 ADD root /
 
-<%- }
+<%}
 
-else if (image == 'ubuntu-nginx-hl') { -%>
-
-FROM hackinglab/<%= image %>:<%= versionTag %>
+else if (image == 'ubuntu-nginx-hl') { -%> FROM hackinglab/<%= image %>:<%= versionTag %>
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
 ADD root /
 
-<%- }
+<%}
 
-else if (image == 'ubuntu-nginx-nodejs-hl') { -%>
-
-FROM hackinglab/<%= image %>:<%= versionTag %>
+else if (image == 'ubuntu-nginx-nodejs-hl') { -%> FROM hackinglab/<%= image %>:<%= versionTag %>
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
 ADD root /
 
-<%- }
+<%}
 
 
-else {%>
-
-FROM hackinglab/<%= image %>:latest
+else {%> FROM hackinglab/<%= image %>:latest
 
 LABEL maintainer=<<%= authorEmail %>>
 MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
 ADD root /
 
-<% }
+<%}
 
 %>
 
