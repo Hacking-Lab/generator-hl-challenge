@@ -241,6 +241,11 @@ module.exports = class extends Generator {
                         name: 'alpine-apache2-hl: Alpine apache2 web server',
                         short: 'alpine-apache2-hl',
                         value: 'alpine-apache2-hl'
+                    },
+                    {
+                        name: 'alpine-apache2-php-hl: Alpine apache2 web server with PHP',
+                        short: 'alpine-apache2-php-hl',
+                        value: 'alpine-apache2-php-hl'
                     }
 
 
