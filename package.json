@@ -12,7 +12,7 @@
     "yeoman-generator",
     "hacking-lab"
   ],
-  "author": "Stephan Hauser <stephan.hauser@compass-security.com>",
+  "author": "Stephan Hauser <ivan.buetler@hacking-lab.com>",
   "license": "MIT",
   "dependencies": {
     "uuid": "^9.0.0",
