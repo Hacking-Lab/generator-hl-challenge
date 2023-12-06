@@ -297,6 +297,8 @@ module.exports = class extends Generator {
         ]);
     }
 
+    this.log('================= CRESTE PROJECT  ===================');
+
     writing() {
         if (this.answers.multiService !== 'multidocker-one-service') {
             const tplFiles = ['gitignore:.gitignore'];
@@ -526,7 +528,7 @@ module.exports = class extends Generator {
         this.log('alpine-openssh-server-hl 		https://github.com/Hacking-Lab/alpine-openssh-server-hl');
         this.log('alpine-siab-hl				https://github.com/Hacking-Lab/alpine-siab-hl');
         this.log('alpine-ttyd-hl				https://github.com/Hacking-Lab/alpine-ttyd-hl');
-        this.log('alpine-terraform-websocketd-hl 	https://github.com/Hacking-Lab/alpine-terraform-websocketd-hl');
+        this.log('alpine-terraform-websocketd-hl 		https://github.com/Hacking-Lab/alpine-terraform-websocketd-hl');
         this.log('alpine-binary-c-hl			https://github.com/Hacking-Lab/alpine-binary-c-hl');
         this.log('alpine-binary-c-dynamic-hl		https://github.com/Hacking-Lab/alpine-binary-c-dynamic-hl');
         this.log('alpine-tinyproxy-hl			https://github.com/Hacking-Lab/alpine-tinyproxy-hl');
