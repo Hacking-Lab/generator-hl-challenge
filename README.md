@@ -2,8 +2,12 @@
 This generator uses [Yeoman](https://yeoman.io/) to generate new [Hacking-Lab](https://www.compass-security.com/en/products/hacking-lab/) Challenge Docker containers.
 
 ## Installation NPM package
-1. Install NodeJS and NPM (Live CD: `sudo apt install nodejs npm`)
-2. Install yo and our generator: `sudo npm install -g generator-hl-challenge yo`
+Please install the HL challenge generator with the commands below
+
+```bash
+sudo apt install nodejs npm
+sudo npm install -g generator-hl-challenge yo
+```
 
 ## Create a CTF docker (not as user root)
 Generate a temporary uuid using `uuidgen`. If you are going to create a docker for Hacking-Lab, the docker resource editor will return a `uuid` you must use. If you do not have access to the HL resource editor, ask for a `uuid` from them. 
@@ -42,3 +46,5 @@ To add support for a new base image, you will have to:
 * npm login
 * npm publish
 * sudo npm link
+
+
