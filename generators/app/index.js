@@ -80,12 +80,12 @@ module.exports = class extends Generator {
                 message: 'What type of container are you developing?',
                 choices: [
                     {
-                        name: 'idocker (https) or rdocker (socket) challenge?',
+                        name: 'idocker (https) container?',
                         short: 'idocker',
                         value: 'idocker',
                     },
                     {
-                        name: 'Any other type of network service (rdocker)',
+                        name: 'rdocker (socket) container?',
                         short: 'rdocker',
                         value: 'rdocker',
                     }
@@ -505,6 +505,7 @@ module.exports = class extends Generator {
             this.log('flag in ENV variable: Please customize the ENV flag distribution script ./root/flag-deploy-scripts/deploy-env-flag.sh');
             this.log('flag in FILE: Please customize the FILE flag distribution script ./root/flag-deploy-scripts/deploy-file-flag.sh');
         }
+        this.log('');
         this.log('================= PREPARE FOR HL  ===================');
         this.log('Run ./prepare.sh and dockerfiles.tar.gz will be generatred');
         this.log('Please upload dockerfiles.tar.gz to the HL resource editor');
@@ -512,20 +513,23 @@ module.exports = class extends Generator {
         this.log('Please add the newly created resource to a Hacking-Lab challenge');
         this.log('Deploy the Hacking-Lab challenge with your newly created resource');
         this.log('Test the Hacking-Lab challenge in Hacking-Lab');
+        this.log('');
         this.log('================= APPENDIX ===================');
-        this.log('alpine-base-hl			https://github.com/Hacking-Lab/alpine-base-hl');
+        this.log('alpine-base-hl				https://github.com/Hacking-Lab/alpine-base-hl');
         this.log('alpine-apache2-hl			https://github.com/Hacking-Lab/alpine-apache2-hl');
-        this.log('alpine-apache2-php-hl 		https://github.com/Hacking-Lab/alpine-apache2-php-hl');
-        this.log('alpine-nginx-hl			https://github.com/Hacking-Lab/alpine-nginx-hl');
+        this.log('alpine-apache2-php-hl 			https://github.com/Hacking-Lab/alpine-apache2-php-hl');
+        this.log('alpine-nginx-hl				https://github.com/Hacking-Lab/alpine-nginx-hl');
         this.log('alpine-nginx-php-hl			https://github.com/Hacking-Lab/alpine-nginx-php-hl');
-        this.log('alpine-nginx-nodejs-hl 		https://github.com/Hacking-Lab/alpine-nginx-nodejs-hl');
+        this.log('alpine-nginx-nodejs-hl 			https://github.com/Hacking-Lab/alpine-nginx-nodejs-hl');
         this.log('alpine-nginx-websocketd-nodejs-ui	https://github.com/Hacking-Lab/alpine-nginx-websocketd-nodejs-ui');
         this.log('alpine-nginx-with-theia-web-ide-hl 	https://github.com/Hacking-Lab/alpine-nginx-with-theia-web-ide-hl');
         this.log('alpine-openssh-server-hl 		https://github.com/Hacking-Lab/alpine-openssh-server-hl');
-        this.log('alpine-siab-hl			https://github.com/Hacking-Lab/alpine-siab-hl');
+        this.log('alpine-siab-hl				https://github.com/Hacking-Lab/alpine-siab-hl');
+        this.log('alpine-ttyd-hl				https://github.com/Hacking-Lab/alpine-ttyd-hl');
         this.log('alpine-terraform-websocketd-hl 	https://github.com/Hacking-Lab/alpine-terraform-websocketd-hl');
         this.log('alpine-binary-c-hl			https://github.com/Hacking-Lab/alpine-binary-c-hl');
         this.log('alpine-binary-c-dynamic-hl		https://github.com/Hacking-Lab/alpine-binary-c-dynamic-hl');
         this.log('alpine-tinyproxy-hl			https://github.com/Hacking-Lab/alpine-tinyproxy-hl');
+        this.log('');
     }
 };
