@@ -297,7 +297,6 @@ module.exports = class extends Generator {
         ]);
     }
 
-    this.log('================= CRESTE PROJECT  ===================');
 
     writing() {
         if (this.answers.multiService !== 'multidocker-one-service') {
