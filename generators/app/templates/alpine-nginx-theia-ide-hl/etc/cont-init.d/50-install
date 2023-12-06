@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contentenv bash
 
 # copy config
 [[ ! -e /config/www/config.php ]] && \

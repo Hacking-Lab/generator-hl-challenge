@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contentenv bash
 
 exec /usr/sbin/nginx -c /config/nginx/nginx.conf
 

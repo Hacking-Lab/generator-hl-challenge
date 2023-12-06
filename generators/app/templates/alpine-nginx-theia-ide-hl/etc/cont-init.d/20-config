@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contentenv bash
 
 # make our folders
 echo "================== make /config =========="

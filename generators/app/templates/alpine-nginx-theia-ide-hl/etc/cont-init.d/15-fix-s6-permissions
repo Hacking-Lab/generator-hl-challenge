@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contentenv bash
 
 chown root:root /run/s6/container_environment
 chmod 750 /run/s6/container_environment
