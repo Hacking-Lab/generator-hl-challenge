@@ -1,6 +1,6 @@
 {
   "name": "generator-hl-challenge",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "Hacking-Lab Challenge container generator",
   "files": [
     "generators"
