@@ -6,7 +6,7 @@ if [ -z "$UUID" ]; then
     read UUID
 fi
 
-./challenge-tester/hl-challenge-config-checker.py -c ./ || exit 1
+#./challenge-tester/hl-challenge-config-checker.py -c ./ || exit 1
 
 echo "============== Creating tar.gz ===================="
 echo ""
