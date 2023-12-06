@@ -10,8 +10,8 @@ module.exports = class extends Generator {
     async prompting() {
 
         // Log a message to the console to guide the user through the process
-        this.log("Before we start, we'll need a bit of information about this new challenge.");
-        this.log("Make sure you have created a resource in the editor and have the UUID ready.");
+        this.log("====================== START ========================");
+        this.log("Please make sure you have created a resource in the HL resource editor and you have the UUID ready.");
 
         // Use the this.prompt() method to ask the user for information and store the answers in this.answers
         this.answers = await this.prompt([
@@ -20,7 +20,7 @@ module.exports = class extends Generator {
             {
                 type: 'input',
                 name: 'name',
-                message: 'Resource name (use-kebab-case; must match the name given in the resource editor)',
+                message: 'Resource name (use-kebab-case; the UUID must match the name given in the HL resource editor)',
                 default: this.appname.replace(/[^a-z0-9-]/ig, '-').toLowerCase(),
                 validate: x => /^[a-z0-9]+(-[a-z0-9]+)*$/.test(x),
             },
@@ -29,7 +29,7 @@ module.exports = class extends Generator {
             {
                 type: 'input',
                 name: 'uuid',
-                message: 'Resource UUID (fetch it from the resource editor or leave blank to generate a random one)',
+                message: 'Resource UUID (fetch it from the HL resource editor or leave blank to generate a random one)',
                 default: uuidv4(),
                 validate: x => /^\s*[0-9a-f]{8}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{12}\s*$/i.test(x),
                 filter: x => x.toLowerCase().trim(),
@@ -80,7 +80,7 @@ module.exports = class extends Generator {
                 message: 'What type of container are you developing?',
                 choices: [
                     {
-                        name: 'A normal web application, hosted through a reverse proxy with HTTPS (idocker)',
+                        name: 'idocker (https) or rdocker (socket) challenge?',
                         short: 'idocker',
                         value: 'idocker',
                     },
@@ -98,12 +98,12 @@ module.exports = class extends Generator {
                 message: 'Select the Image Distribution type:',
                 choices: [
                     {
-                        name: 'Ubuntu',
-                        value: 'ubuntu',
-                    },
-                    {
                         name: 'Alpine',
                         value: 'alpine',
+                    },
+                    {
+                        name: 'Ubuntu',
+                        value: 'ubuntu',
                     }
                 ],
                 default: 'alpine'
@@ -266,15 +266,15 @@ module.exports = class extends Generator {
                 name: 'flagType',
                 message: 'What type of flag do you want to use?',
                 choices: [
+                    {   
+                        name: 'A flag in an environment variable (env flag)',
+                        short: 'env flag',
+                        value: 'env',
+                    },
                     {
                         name: 'A flag in a file (file flag)',
                         short: 'file flag',
                         value: 'file',
-                    },
-                    {
-                        name: 'A flag in an environment variable (env flag)',
-                        short: 'env flag',
-                        value: 'env',
                     }
                 ],
                 default: false
@@ -485,21 +485,47 @@ module.exports = class extends Generator {
     }
 
     end() {
-        this.log('Thank you for using the Hacking-Lab Challenge generator today!');
-        this.log('Next steps:');
-        this.log('- Please consult the README.md file for more information about your base image');
-        this.log('- Please run docker-compose up --build to locally build and test your container');
-        this.log('- Most docker containers will expose http://localhost. You can change the port in your docker-compose.yml file');
-        this.log('- add your init scripts to root/etc/cont-init.d/');
-        this.log('- add your service scripts to root/etc/service.d/');
-        this.log('- Develop your challenge');
+        this.log('================= FINISHED ===================');
+        this.log('Thank you for using the HL docker challenge generator today!');
+        this.log('please consult the README.md file for more information about the project created');
+        this.log('');
+        this.log('================= BUILD TEST  ===================');
+        this.log('please run docker-compose up --build to locally build and test your initial container');
+        this.log('most docker containers will expose http://localhost. You can change the port in your docker-compose.yml file');
+        this.log('');
+        this.log('================= ADJUST  ===================');
+        this.log('add your s6 init scripts to ./root/etc/cont-init.d/ https://github.com/just-containers/s6-overlay');
+        this.log('add your s5 service scripts to ./root/etc/service.d/ https://github.com/just-containers/s6-overlay');
+        this.log('add your changes to this project');
+        this.log('');
+        this.log('================= DYNAMIC FLAG  ===================');
         if (this.answers.goldnugget) {
-            this.log('- Customize root/flag-deploy-scripts/* to put your goldnugget in the correct place');
+            this.log('Please implement the dynamic flag distribution');
+            this.log('The flag is stored in $GOLDNUGGET');
+            this.log('flag in ENV variable: Please customize the ENV flag distribution script ./root/flag-deploy-scripts/deploy-env-flag.sh');
+            this.log('flag in FILE: Please customize the FILE flag distribution script ./root/flag-deploy-scripts/deploy-file-flag.sh');
         }
-        this.log('- Once everything is working, run ./prepare.sh and upload dockerfiles.tar.gz to the Hacking-Lab resource editor');
-        this.log('- Configure the docker-compose.yml and challenge properties in the Hacking-Lab resource editor');
-        this.log('- Add the newly created resource to a Hacking-Lab challenge');
-        this.log('- Deploy the Hacking-Lab challenge with your newly created resource');
-        this.log('- Test the Hacking-Lab challenge in Hacking-Lab');
+        this.log('================= PREPARE FOR HL  ===================');
+        this.log('Run ./prepare.sh and dockerfiles.tar.gz will be generatred');
+        this.log('Please upload dockerfiles.tar.gz to the HL resource editor');
+        this.log('Please configure docker-compose.yml in the HL resource editor');
+        this.log('Please add the newly created resource to a Hacking-Lab challenge');
+        this.log('Deploy the Hacking-Lab challenge with your newly created resource');
+        this.log('Test the Hacking-Lab challenge in Hacking-Lab');
+        this.log('================= APPENDIX ===================');
+        this.log('alpine-base-hl			https://github.com/Hacking-Lab/alpine-base-hl');
+        this.log('alpine-apache2-hl			https://github.com/Hacking-Lab/alpine-apache2-hl');
+        this.log('alpine-apache2-php-hl 		https://github.com/Hacking-Lab/alpine-apache2-php-hl');
+        this.log('alpine-nginx-hl			https://github.com/Hacking-Lab/alpine-nginx-hl');
+        this.log('alpine-nginx-php-hl			https://github.com/Hacking-Lab/alpine-nginx-php-hl');
+        this.log('alpine-nginx-nodejs-hl 		https://github.com/Hacking-Lab/alpine-nginx-nodejs-hl');
+        this.log('alpine-nginx-websocketd-nodejs-ui	https://github.com/Hacking-Lab/alpine-nginx-websocketd-nodejs-ui');
+        this.log('alpine-nginx-with-theia-web-ide-hl 	https://github.com/Hacking-Lab/alpine-nginx-with-theia-web-ide-hl');
+        this.log('alpine-openssh-server-hl 		https://github.com/Hacking-Lab/alpine-openssh-server-hl');
+        this.log('alpine-siab-hl			https://github.com/Hacking-Lab/alpine-siab-hl');
+        this.log('alpine-terraform-websocketd-hl 	https://github.com/Hacking-Lab/alpine-terraform-websocketd-hl');
+        this.log('alpine-binary-c-hl			https://github.com/Hacking-Lab/alpine-binary-c-hl');
+        this.log('alpine-binary-c-dynamic-hl		https://github.com/Hacking-Lab/alpine-binary-c-dynamic-hl');
+        this.log('alpine-tinyproxy-hl			https://github.com/Hacking-Lab/alpine-tinyproxy-hl');
     }
 };
