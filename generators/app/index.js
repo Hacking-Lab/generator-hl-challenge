@@ -487,13 +487,19 @@ module.exports = class extends Generator {
     end() {
         this.log('Thank you for using the Hacking-Lab Challenge generator today!');
         this.log('Next steps:');
-        this.log('- Read README.md file for more information about your base image');
-        this.log('- Run docker-compose up --build to build and test your container');
-        this.log('- By default web applications are exposed on http://localhost. You can change the port in your docker-compose.yml file');
+        this.log('- Please consult the README.md file for more information about your base image');
+        this.log('- Please run docker-compose up --build to locally build and test your container');
+        this.log('- Most docker containers will expose http://localhost. You can change the port in your docker-compose.yml file');
+        this.log('- add your init scripts to root/etc/cont-init.d/');
+        this.log('- add your service scripts to root/etc/service.d/');
         this.log('- Develop your challenge');
         if (this.answers.goldnugget) {
             this.log('- Customize root/flag-deploy-scripts/* to put your goldnugget in the correct place');
         }
-        this.log('- Once everything is working, run ./prepare.sh and upload dockerfiles.tar.gz to the resource editor');
+        this.log('- Once everything is working, run ./prepare.sh and upload dockerfiles.tar.gz to the Hacking-Lab resource editor');
+        this.log('- Configure the docker-compose.yml and challenge properties in the Hacking-Lab resource editor');
+        this.log('- Add the newly created resource to a Hacking-Lab challenge');
+        this.log('- Deploy the Hacking-Lab challenge with your newly created resource');
+        this.log('- Test the Hacking-Lab challenge in Hacking-Lab');
     }
 };
