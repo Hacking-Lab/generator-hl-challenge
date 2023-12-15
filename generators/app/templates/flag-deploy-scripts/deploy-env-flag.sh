@@ -5,4 +5,8 @@
 # Your task
 echo "please store $GOLDNUGGET to the final destination"
 
+# for example
+# echo $GOLDNUGGET > /flag.txt
+# chmod 644 /flag.txt
+
 

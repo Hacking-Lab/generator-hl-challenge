@@ -9,3 +9,9 @@ GN_FILE=$(ls /goldnugget/*.gn)
 source $GN_FILE
 
 echo "extend this script and move $GOLDNUGGET to the destination you want"
+
+# for example
+# echo $GOLDNGGET > /flag.txt
+# chmod 644 /flag.txt
+
+
