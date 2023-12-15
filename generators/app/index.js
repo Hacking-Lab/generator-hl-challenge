@@ -233,9 +233,9 @@ module.exports = class extends Generator {
                     },
 
                     {
-                        name: 'alpine-nginx-theia-ide: Alpine Linux, s6 startup, NGINX and static web site, Theia web IDE',
-                        short: 'alpine-nginx-theia-ide',
-                        value: 'alpine-nginx-theia-ide'
+                        name: 'nginx-with-theia-web-ide-hl: Alpine Linux, s6 startup, NGINX and static web site, Theia web IDE',
+                        short: 'nginx-with-theia-web-ide-hl',
+                        value: 'nginx-with-theia-web-ide-hl'
                     },
                     {
                         name: 'alpine-apache2-hl: Alpine apache2 web server',
@@ -496,7 +496,7 @@ module.exports = class extends Generator {
         this.log('');
         this.log('================= ADJUST  ===================');
         this.log('add your s6 init scripts to ./root/etc/cont-init.d/ https://github.com/just-containers/s6-overlay');
-        this.log('add your s5 service scripts to ./root/etc/service.d/ https://github.com/just-containers/s6-overlay');
+        this.log('add your s6 service scripts to ./root/etc/service.d/ https://github.com/just-containers/s6-overlay');
         this.log('add your changes to this project');
         this.log('');
         this.log('================= DYNAMIC FLAG  ===================');
@@ -516,21 +516,28 @@ module.exports = class extends Generator {
         this.log('Test the Hacking-Lab challenge in Hacking-Lab');
         this.log('');
         this.log('================= APPENDIX ===================');
-        this.log('alpine-base-hl				https://github.com/Hacking-Lab/alpine-base-hl');
-        this.log('alpine-apache2-hl			https://github.com/Hacking-Lab/alpine-apache2-hl');
-        this.log('alpine-apache2-php-hl 			https://github.com/Hacking-Lab/alpine-apache2-php-hl');
-        this.log('alpine-nginx-hl				https://github.com/Hacking-Lab/alpine-nginx-hl');
-        this.log('alpine-nginx-php-hl			https://github.com/Hacking-Lab/alpine-nginx-php-hl');
-        this.log('alpine-nginx-nodejs-hl 			https://github.com/Hacking-Lab/alpine-nginx-nodejs-hl');
-        this.log('alpine-nginx-websocketd-nodejs-ui	https://github.com/Hacking-Lab/alpine-nginx-websocketd-nodejs-ui');
-        this.log('alpine-nginx-with-theia-web-ide-hl 	https://github.com/Hacking-Lab/alpine-nginx-with-theia-web-ide-hl');
-        this.log('alpine-openssh-server-hl 		https://github.com/Hacking-Lab/alpine-openssh-server-hl');
-        this.log('alpine-siab-hl				https://github.com/Hacking-Lab/alpine-siab-hl');
-        this.log('alpine-ttyd-hl				https://github.com/Hacking-Lab/alpine-ttyd-hl');
-        this.log('alpine-terraform-websocketd-hl 		https://github.com/Hacking-Lab/alpine-terraform-websocketd-hl');
-        this.log('alpine-binary-c-hl			https://github.com/Hacking-Lab/alpine-binary-c-hl');
-        this.log('alpine-binary-c-dynamic-hl		https://github.com/Hacking-Lab/alpine-binary-c-dynamic-hl');
-        this.log('alpine-tinyproxy-hl			https://github.com/Hacking-Lab/alpine-tinyproxy-hl');
+        this.log('alpine-base-hl                           https://github.com/Hacking-Lab/alpine-base-hl');
+        this.log('alpine-apache2-hl                        https://github.com/Hacking-Lab/alpine-apache2-hl');
+        this.log('alpine-apache2-php-hl                    https://github.com/Hacking-Lab/alpine-apache2-php-hl');
+        this.log('alpine-nginx-hl                          https://github.com/Hacking-Lab/alpine-nginx-hl');
+        this.log('alpine-nginx-php-hl                      https://github.com/Hacking-Lab/alpine-nginx-php-hl');
+        this.log('alpine-nginx-nodejs-hl                   https://github.com/Hacking-Lab/alpine-nginx-nodejs-hl');
+        this.log('alpine-nginx-nodejs-websocketd-hl        https://github.com/Hacking-Lab/alpine-nginx-nodejs-websocketd-hl');
+        this.log('alpine-nginx-with-theia-web-ide-hl       https://github.com/Hacking-Lab/alpine-nginx-with-theia-web-ide-hl');
+        this.log('alpine-openssh-server-hl                 https://github.com/Hacking-Lab/alpine-openssh-server-hl');
+        this.log('alpine-siab-hl                           https://github.com/Hacking-Lab/alpine-siab-hl');
+        this.log('alpine-ttyd-hl                           https://github.com/Hacking-Lab/alpine-ttyd-hl');
+        this.log('alpine-binary-c-hl                       https://github.com/Hacking-Lab/alpine-binary-c-hl');
+        this.log('alpine-binary-c-dynamic-hl               https://github.com/Hacking-Lab/alpine-binary-c-dynamic-hl');
+        this.log('alpine-tinyproxy-hl                      https://github.com/Hacking-Lab/alpine-tinyproxy-hl');
+        this.log('ubuntu-base-hl                           https://github.com/Hacking-Lab/ubuntu-base-hl');
+        this.log('ubuntu-nginx-hl                          https://github.com/Hacking-Lab/ubuntu-nginx-hl');
+        this.log('ubuntu-nginx-nodejs-hl                   https://github.com/Hacking-Lab/ubuntu-nginx-nodejs-hl');
+        this.log('alpine-unitd-hl                          https://github.com/Hacking-Lab/alpine-unitd-hl');
+        this.log('alpine-python-flask-hl                   https://github.com/Hacking-Lab/alpine-python-flask-hl');
+        this.log('ubuntu-base-hl                           https://github.com/Hacking-Lab/ubuntu-base-hl');
+        this.log('ubuntu-nginx-hl                          https://github.com/Hacking-Lab/ubuntu-nginx-hl');
+        this.log('ubuntu-nginx-nodejs-hl                   https://github.com/Hacking-Lab/ubuntu-nginx-nodejs-hl');
         this.log('');
     }
 };
